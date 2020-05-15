@@ -1,86 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Dashboard</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="order.css">
-	
-	<script>
-		$(document).ready(function(){
-			$(".hamburger").click(function(){
-			   $(".wrapper").toggleClass("collapse");
-			});
-		});
-	</script>
-</head>
-<body>
+{% extends 'user/basic.html'%}
+{% load static %}
+{% block title %}Order{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'user/order.css' %}">
 
-<div class="wrapper">
-  <div class="top_navbar">
-    <div class="top_menu">
-			<!-- <img class="logo"src="+.png" alt=""> -->
-			<img class="logo"src="+.png" alt="">
-      <div class="Head">Pharmacy Management</div>
-      <ul>	
-        <li><a href="#">
-          <i class="fas fa-user"></i>
-          </a></li>
-      </ul>
-    </div>
-  </div>
-
-<!-- <a class="active" href="#home"><i class="material-icons" style="font-size:15px;">home</i>About</a> -->
-
-  <div class="sidebar">
-      <ul>
-        <li><a href="#">
-          <span class="icon"><i class="fas fa-info-circle"></i></span>
-          <span class="title">About Us</span></a></li>
-        <li><a href="Dashboard.html">
-          <span class="icon"><i class="material-icons" style="font-size:15px;">dashboard</i></span>
-          <span class="title">Dashboard</span></a></li>
-        <li><a href="#">
-          <span class="icon"><i class="fas fa-list-ul"></i></span>
-          <span class="title">Products</span>
-          </a></li>
-        <li><a href="#" class="active">
-          <span class="icon"><i class="fas fa-shopping-cart"></i></span>
-          <span class="title">Orders</span>
-          </a></li>
-        <li><a href="#">
-          <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
-          <span class="title">Logout</span>
-          </a></li>
-    </ul>
-  </div>
+{% endblock %}
+{% block body %}
+<div class="heading">
+    <div class="h">Orders / Page</div>
 </div>
-    <div class="heading"><div class="h">Orders / Page</div></div>
-    <div class="Order_table">
-        <div class="row" id="main_row">
-          <div class="col"><center>PRODUCT NAME</center></div>
-          <div class="col"><center>QUANTITY</center></div>
-          <div class="col"><center>AMOUNT (Rs.)</center></div>
-          <div class="col"></div>
+<div class="Order_table">
+    <div class="row" id="main_row">
+        <div class="col">
+            <center>PRODUCT NAME</center>
         </div>
-        <div class="row">
-          <div class="col"><center>Paracetemol</center></div>
-          <div class="col"><center>2</center></div>
-          <div class="col"><center>10</center></div>
-          <div class="col"><center><button type="button" class="btn btn-danger">Delete</button></center></div>
+        <div class="col">
+            <center>QUANTITY</center>
         </div>
-        <hr>
-        <div class="row">
-          <div class="col"><center>Amoxyciline</center></div>
-          <div class="col"><center>15</center></div>
-          <div class="col"><center>150</center></div>
-          <div class="col"><center><button type="button" class="btn btn-danger">Delete</button></center></div>
+        <div class="col">
+            <center>AMOUNT (Rs.)</center>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <center>Paracetemol</center>
+        </div>
+        <div class="col">
+            <center>2</center>
+        </div>
+        <div class="col">
+            <center>10</center>
+        </div>
+        <div class="col">
+            <center><button type="button" class="btn btn-danger">Delete</button></center>
         </div>
     </div>
-</body>
-</html>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <center>Amoxyciline</center>
+        </div>
+        <div class="col">
+            <center>15</center>
+        </div>
+        <div class="col">
+            <center>150</center>
+        </div>
+        <div class="col">
+            <center><button type="button" class="btn btn-danger">Delete</button></center>
+        </div>
+    </div>
+</div>
+{% endblock %}

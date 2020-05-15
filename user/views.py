@@ -11,7 +11,7 @@ def tracker(request):
 	return HttpResponse("At tracker")
 
 def order(request):
-	return HttpResponse("At order")
+	return render(request,"user/order.html")
 
 def productview(request):
 	return HttpResponse("At productview")
