@@ -1,0 +1,113 @@
+{% extends 'user/basic.html'%}
+{% load static %}
+{% block title %}Category|Ayurvedic Products{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'user/catproducts.css' %}">
+{% endblock %}
+{% block body %}
+<div id="main">
+    <span>All Products </span><br>
+    <!-- Showing total no. of products in this category (Backend) -->
+    <span>1 - 14 of 14 products</span>
+    <div class="row my-3">
+        <div class="col">
+            <div class="card" style="width: 18rem;z-index: -1;">
+                <img class="card-img-top" src="{% static 'user/demo.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title" id="namepr" style="color: black;">Blood Glucometer Kit</h5>
+                    <p class="card-text">Makes the blood glucose monitoring process easy</p>
+                    <h6 class="card-title">Price: <span id="pricepr">10</span></h6>
+                    <div id="all_btn">
+                        <span id="divpr" class="divpr">
+                            <button id="pr" class="btn btn-primary cart">Add to Cart</button>
+                        </span>
+                        <a href="/shop/products/"><button id="qv" class="btn btn-primary">QuickView</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;z-index: -1;">
+                <img class="card-img-top" src="{% static 'user/demo.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title" id="namepr" style="color: black;">Blood Glucometer Kit</h5>
+                    <p class="card-text">Makes the blood glucose monitoring process easy</p>
+                    <h6 class="card-title">Price: <span id="pricepr">10</span></h6>
+                    <div id="all_btn">
+                        <span id="divpr" class="divpr">
+                            <button id="pr" class="btn btn-primary cart">Add to Cart</button>
+                        </span>
+                        <a href="/shop/products/"><button id="qv" class="btn btn-primary">QuickView</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;z-index: -1;">
+                <img class="card-img-top" src="{% static 'user/demo.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title" id="namepr" style="color: black;">Blood Glucometer Kit</h5>
+                    <p class="card-text">Makes the blood glucose monitoring process easy</p>
+                    <h6 class="card-title">Price: <span id="pricepr">10</span></h6>
+                    <div id="all_btn">
+                        <span id="divpr" class="divpr">
+                            <button id="pr" class="btn btn-primary cart">Add to Cart</button>
+                        </span>
+                        <a href="/shop/products/"><button id="qv" class="btn btn-primary">QuickView</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col">
+            <div class="card" style="width: 18rem;z-index: -1;">
+                <img class="card-img-top" src="{% static 'user/demo.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title" id="namepr" style="color: black;">Blood Glucometer Kit</h5>
+                    <p class="card-text">Makes the blood glucose monitoring process easy</p>
+                    <h6 class="card-title">Price: <span id="pricepr">10</span></h6>
+                    <div id="all_btn">
+                        <span id="divpr" class="divpr">
+                            <button id="pr" class="btn btn-primary cart">Add to Cart</button>
+                        </span>
+                        <a href="/shop/products/"><button id="qv" class="btn btn-primary">QuickView</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;z-index: -1;">
+                <img class="card-img-top" src="{% static 'user/demo.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title" id="namepr" style="color: black;">Blood Glucometer Kit</h5>
+                    <p class="card-text">Makes the blood glucose monitoring process easy</p>
+                    <h6 class="card-title">Price: <span id="pricepr">10</span></h6>
+                    <div id="all_btn">
+                        <span id="divpr" class="divpr">
+                            <button id="pr" class="btn btn-primary cart">Add to Cart</button>
+                        </span>
+                        <a href="/shop/products/"><button id="qv" class="btn btn-primary">QuickView</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;z-index: -1;">
+                <img class="card-img-top" src="{% static 'user/demo.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title" id="namepr" style="color: black;">Blood Glucometer Kit</h5>
+                    <p class="card-text">Makes the blood glucose monitoring process easy</p>
+                    <h6>Price: <span id="pricepr">10</span></h6>
+                    <div id="all_btn">
+                        <span id="divpr" class="divpr">
+                            <button id="pr" class="btn btn-primary cart">Add to Cart</button>
+                        </span>
+                        <a href="/shop/products/"><button id="qv" class="btn btn-primary">QuickView</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

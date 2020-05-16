@@ -11,6 +11,7 @@
 body{
   /* background: #e1ecf2; */
   background: #15161d;
+  color:white;
 }
 .wrapper{
   margin: 10px;
@@ -53,6 +54,7 @@ body{
   align-items: center;
   padding: 0 20px;
   box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  margin-top: -10px;
 }
 
 .wrapper .top_navbar .top_menu .logo{
@@ -74,7 +76,6 @@ body{
 
 .wrapper .top_navbar .top_menu ul li a{
   display: block;
-  margin: 0 10px;
   width: 35px;
   height: 40px;
   line-height: 35px;
@@ -95,7 +96,7 @@ body{
 
 .wrapper .sidebar{
   position: fixed;
-  top: 80px;
+  top: 70px;
   left: 10px;
   /* background: #2e4ead; */
   background: rgba(37,45,66,0.7);
@@ -113,7 +114,6 @@ body{
     margin-bottom: 1px;
     color: #92a6e2;
     white-space: nowrap;
-    align-content: center;
 }
 
 .wrapper .sidebar ul li a:before{
@@ -140,7 +140,6 @@ body{
 .wrapper .sidebar ul li a.active{
   background: #4360b5;
   color: #fff;
-
 }
 
 .wrapper .sidebar ul li a:hover:before,
@@ -164,60 +163,30 @@ body{
   display: none;
 }
 
-.heading{
-  top: 26%;
-  left: 32%;
-  color: white;
-  z-index: 5;
-  position: absolute;
-  width: 760px;
-  height: 45px;
-  background:#4360b5;
+.content-about{
+    margin-left: 210px;
+    margin-top: 80px;
+    text-align: center;
 }
 
-.heading .h{
-  margin: 10px;
-  padding-left: 20px;
+.quote{
+    color: rgb(23, 189, 240);
+    font-size: 15px;
+    text-align: center;
+    margin-top: 100px;
 }
 
-.Order_table{
-  top: 60%;
-  left: 57%;
-  color: white;
-  transform: translate(-50%,-50%);
-  position: absolute;
-  width: 800px;
-  height: 400px;
-  background:rgba(37,45,66,0.7);
+.About{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 80px;
+    font-size: small;
 }
 
-
-.Order_table #main_row{
-  color: #888;
-  margin:20px;
-  margin-top: 27px;
-  margin-bottom: 27px;
+.footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+    background-color:  #4360b5;
 }
-
-.Order_table .row{
-  color: white;
-  margin: 20px;
-}
-.Order_table #main_row .col{
-  font-size: 15px;
-}
-
-.Order_table .row .col{
-  font-size: 16px;
-}
-hr{
-    background: rgba(255,255,255,0.1);
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.btn-danger{
-  width: 120px;
-  height: 36px;
-}
-

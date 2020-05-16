@@ -297,28 +297,32 @@ body{
     }
 }
 
-.column {
+#column {
 float: left;
 width: 25%;
 padding-left: 70px;
 }
 
-.column1 {
+#column1 {
     float: left;
     width: 33.33%;
     padding-left: 70px;
 }
 
 
-.row::after {
+#row::after {
     content: "";
     clear: both;
     display: table;
 }
 
-.footer ul {
+
+#footer #last-line {
+    /*text-align: center;*/
+    position: absolute;
     list-style-type: none;
     margin: 0;
+    margin-left: 230px;
     padding: 10px;
     overflow: hidden;
     background-color:  #4360b5;

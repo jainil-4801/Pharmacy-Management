@@ -12,6 +12,17 @@ body{
   /* background: #e1ecf2; */
   background: #15161d;
 }
+#main{
+  margin-left: 300px;
+  margin-top: 87px;
+  color: white;
+}
+
+.card-body{
+  color: black;
+}
+
+
 .wrapper{
   margin: 10px;
 }
@@ -53,6 +64,7 @@ body{
   align-items: center;
   padding: 0 20px;
   box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  margin-top: -10px;
 }
 
 .wrapper .top_navbar .top_menu .logo{
@@ -95,7 +107,7 @@ body{
 
 .wrapper .sidebar{
   position: fixed;
-  top: 80px;
+  top: 70px;
   left: 10px;
   /* background: #2e4ead; */
   background: rgba(37,45,66,0.7);
@@ -140,7 +152,6 @@ body{
 .wrapper .sidebar ul li a.active{
   background: #4360b5;
   color: #fff;
-
 }
 
 .wrapper .sidebar ul li a:hover:before,
@@ -163,61 +174,3 @@ body{
 .wrapper.collapse .sidebar ul li a span.title{
   display: none;
 }
-
-.heading{
-  top: 26%;
-  left: 32%;
-  color: white;
-  z-index: 5;
-  position: absolute;
-  width: 760px;
-  height: 45px;
-  background:#4360b5;
-}
-
-.heading .h{
-  margin: 10px;
-  padding-left: 20px;
-}
-
-.Order_table{
-  top: 60%;
-  left: 57%;
-  color: white;
-  transform: translate(-50%,-50%);
-  position: absolute;
-  width: 800px;
-  height: 400px;
-  background:rgba(37,45,66,0.7);
-}
-
-
-.Order_table #main_row{
-  color: #888;
-  margin:20px;
-  margin-top: 27px;
-  margin-bottom: 27px;
-}
-
-.Order_table .row{
-  color: white;
-  margin: 20px;
-}
-.Order_table #main_row .col{
-  font-size: 15px;
-}
-
-.Order_table .row .col{
-  font-size: 16px;
-}
-hr{
-    background: rgba(255,255,255,0.1);
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.btn-danger{
-  width: 120px;
-  height: 36px;
-}
-

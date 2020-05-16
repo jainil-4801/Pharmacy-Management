@@ -8,8 +8,8 @@
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {% block css %}{% endblock %}
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'user/index.css' %}" /> -->
 </head>
@@ -30,22 +30,22 @@
         </div>
         <div class="sidebar">
             <ul>
-                <li><a href="About.html">
+                <li><a href="/user/about">
                         <span class="icon"><i class="fas fa-info-circle"></i></span>
                         <span class="title">About Us</span></a></li>
-                <li><a href="Dashboard.html" class="active">
+                <li><a href="/user">
                         <span class="icon"><i class="material-icons" style="font-size:15px;">dashboard</i></span>
                         <span class="title">Dashboard</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="/user/catproducts">
                         <span class="icon"><i class="fas fa-list-ul"></i></span>
                         <span class="title">Products</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="/user/order">
                         <span class="icon"><i class="fas fa-shopping-cart"></i></span>
-                        <span class="title">Orders</span>
+                        <span class="title">Orders <span class="Cart" style="margin-left: 8px;border-radius: 50%;padding: 1.5px 7px;background: #3b4cad;">0</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="/user">
                         <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
                         <span class="title">Logout</span>
                     </a></li>
@@ -53,14 +53,6 @@
         </div>
     </div>
     {% block body %}{% endblock %}
-    <div class="footer">
-        <center>
-            <ul>
-                <h3><i class="fa fa-heart" style="font-size:20px;color:red;margin-right: 10px;"></i>Always Laugh When You Can It Is Cheap Medicine<i class="fa fa-heart" style="font-size:20px;color:red;margin-left: 10px;"></i></h3>
-            </ul>
-        </center>
-    </div>
-    <br />
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

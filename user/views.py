@@ -5,7 +5,7 @@ def index(request):
 	return render(request,"user/index.html")
 
 def about(request):
-	return HttpResponse("At about")
+	return render(request,"user/about.html")
 
 def tracker(request):
 	return HttpResponse("At tracker")
@@ -17,7 +17,7 @@ def productview(request):
 	return HttpResponse("At productview")
 
 def catproducts(request):
-	return HttpResponse("At Catproducts")
+	return render(request,"user/catproducts.html")
 
 def checkout(request):
 	return HttpResponse("At checkout")
