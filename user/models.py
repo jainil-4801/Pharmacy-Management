@@ -10,6 +10,7 @@ class Product(models.Model):
 	exp_date = models.DateField()
 	price = models.IntegerField(default=0)
 	image = models.ImageField(upload_to="user/images",default="")
+	discount = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.product_name

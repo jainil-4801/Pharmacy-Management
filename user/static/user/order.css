@@ -24,23 +24,6 @@ body{
   top: 10px;
 }
 
-.wrapper .top_navbar .hamburger{
-  width: 65px;
-  height: 100%;
-  background: #2e4ead;
-  padding: 15px 17px;
-  border-top-left-radius: 20px;
-  cursor: pointer;
-}
-
-.wrapper .top_navbar .hamburger div{
-  height: 4px;
-  width: 35px;
-  background: #92a6e2;
-  margin: 5px 0;
-  border-radius: 5px;
-}
-
 .wrapper .top_navbar .top_menu{
   /* width: calc(100% - 70px); */
   width: 100%;
@@ -164,6 +147,8 @@ body{
   display: none;
 }
 
+
+
 .heading{
   top: 26%;
   left: 32%;
@@ -175,7 +160,7 @@ body{
   background:#4360b5;
 }
 
-.heading .h{
+.h{
   margin: 10px;
   padding-left: 20px;
 }
@@ -189,6 +174,8 @@ body{
   width: 800px;
   height: 400px;
   background:rgba(37,45,66,0.7);
+  overflow: auto;
+  text-align: justify-all;
 }
 
 

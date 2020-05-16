@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Product
+from math import ceil
+import json 
 # Create your views here.
 def index(request):
 	return render(request,"user/index.html")
@@ -16,8 +19,11 @@ def order(request):
 def productview(request):
 	return HttpResponse("At productview")
 
-def catproducts(request):
-	return render(request,"user/catproducts.html")
+def catproducts(request,cat):
+	product = Product.objects.filter(category=cat)
+	n = len(product)
+	params = {'product':product,'length':n}
+	return render(request,"user/catproducts.html",params)
 
 def checkout(request):
 	return HttpResponse("At checkout")
