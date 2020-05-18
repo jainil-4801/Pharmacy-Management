@@ -59,6 +59,8 @@ def tracker(request):
                 for item in update:
                     updates.append({'text':item.update_desc,'time':item.timestamp})
                     response = json.dumps([updates,order[0].items_json],default=str)
+                    print([updates,order[0].items_json])
+                    print(response)
                 return HttpResponse(response) 
             else:    
                 return HttpResponse('{}')
