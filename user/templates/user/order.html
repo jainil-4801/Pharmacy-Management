@@ -145,7 +145,7 @@ function updateTable() {
         $('.Order_table').append(str);
     }
     else{
-      str = `<div class="heading2 style="font-size:10px;" "><div class="row"><div class="col mt-3"><center>Total Price</center></div><div class="col"></div><div class="col mt-3"><center>${TotalPrice}</center></div><div class="col mt-2  "><center><a href="/user/checkout/"><button type="button" class="btn btn-danger">Place Order</button></a></center></div></div></div>`
+      str = `<div class="heading2 style="font-size:10px;" "><div class="row"><div class="col mt-3"><center>Total Price</center></div><div class="col"></div><div class="col mt-3"><center>${TotalPrice}</center></div><div class="col mt-2  "><center><a href="/user/checkout/"><button type="button" class="btn btn-danger">CheckOut</button></a></center></div></div></div>`
     $('.Foo').append(str);  
     }
     document.getElementById('cart').innerHTML = sum;

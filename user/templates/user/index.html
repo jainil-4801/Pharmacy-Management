@@ -134,5 +134,16 @@ function showDivs(n) {
     x[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " w3-red";
 }
+
+//Displaying total items in cart 
+cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
+var sum = 0;
+for(var item in cat_cart){
+    let qty = cat_cart[item][0];
+    sum += qty;
+}
+document.getElementById('cart').innerHTML = sum;
+
+
 </script>
 {% endblock %}

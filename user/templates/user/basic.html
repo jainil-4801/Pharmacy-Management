@@ -10,6 +10,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style type="text/css">
+    .search-box {
+        background: #2f3640;
+        height: 40px;
+        margin-left: -343px;
+        margin-right: 61px;
+        border-radius: 40px;
+    }
+
+    .search-btn {
+        color: #4360b5;
+        float: right;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #2f3640;
+        display: flex;
+        justify-content: center;
+    }
+
+    .search-txt {
+        border: none;
+        background: none;
+        outline: none;
+        float: left;
+        padding-left: 20px;
+        color: white;
+        font-size: 16px;
+        transition: 0.4s;
+        line-height: 40px;
+        width: 240px;
+    }
+
+    .logo {
+        margin-top: 10px;
+        text-decoration: none;
+    }
+    </style>
     {% block css %}{% endblock %}
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'user/index.css' %}" /> -->
 </head>
@@ -21,14 +59,24 @@
                 <!-- <img class="logo"src="+.png" alt=""> -->
                 <img class="logo" src="{% static 'user/+.png' %}" alt="">
                 <div class="Head">Pharmacy Management</div>
+                <center>
+                    <div class="search-box">
+                        <form method="get" action="/user/search/">
+                            <input class="search-txt" type="text" name="search" id="search" placeholder="Type to search">
+                            <a href="#" class="search-btn">
+                                <i class="fas fa-search logo"></i>
+                            </a>
+                        </form>
+                    </div>
+                </center>
                 <ul>
-                    <li><a href="#">
+                    <li style="padding-top: 10px;"><a href="#">
                             <i class="fas fa-user"></i>
                         </a></li>
                 </ul>
             </div>
         </div>
-        <div class="sidebar">
+        <div class="sidebar" style="z-index: 20">
             <ul>
                 <li><a href="/user/about">
                         <span class="icon"><i class="fas fa-info-circle"></i></span>

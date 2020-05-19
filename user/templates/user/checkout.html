@@ -33,6 +33,7 @@ body{
             <h2>Step 2 - Enter Address & Other Details:</h2>
             <form method="post" action="/user/checkout/">{% csrf_token %}
                 <input type="hidden" name="itemsJson" id="itemsJson">
+                <input type="hidden" name="amount" id="amount">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputname">Name</label>
@@ -84,7 +85,7 @@ if(localStorage.getItem('cat_cart') == null){
   else{
     cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
   }
-console.log(cat_cart);
+// console.log(cat_cart);
 var totalPrice = 0;
 if ($.isEmptyObject(cat_cart)) {
     // if object is empty
@@ -109,7 +110,7 @@ if ($.isEmptyObject(cat_cart)) {
 document.getElementById('cart').innerHTML = sum;
 document.getElementById('totalPrice').innerHTML = totalPrice;
 $('#itemsJson').val(JSON.stringify(cat_cart)); 
-
+$('#amount').val($('#totalPrice').html());
 var thanku = {{thank}};
 if(thanku){
     alert("Thanks for ordering with us. Your order id is {{id}}. Use it to track your order using the order tracker");

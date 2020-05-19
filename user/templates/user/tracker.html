@@ -66,33 +66,43 @@ $('#trackerForm').submit(function(event) {
             encode: true
         })
         .done(function(data) {
-          console.log(data);
+            $('.citems').empty();
+            console.log(data);
             data = JSON.parse(data);
-            updates = data[0];
-            if (updates.length > 0 & updates !== {}) {
+            if (data['status'] == "success") {
+                updates = data['updates'];
                 for (i = 0; i < updates.length; i++) {
                     let text = updates[i]['text'];
                     let time = updates[i]['time'];
                     mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">${text}<span class="badge badge-primary badge-pill">${time}</span></li>`;
                     $('.items').append(mystr);
                 }
+                cat_cart = JSON.parse(data['itemsJson']);
+                for (item in cat_cart) {
+                    let name = cat_cart[item][1];
+                    let qty = cat_cart[item][0];
+                    console.log(name, qty);
+                    mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">${name}<span class="badge badge-primary badge-pill">${qty}</span></li>`;
+                    $('.citems').append(mystr);
+                }
             } else {
                 mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
                           Sorry, We are not able to fetch this order id and email. Make sure to type correct order id and email. </li>`;
                 $('.items').append(mystr);
-            }
-            // Fill the order details
-            cat_cart = JSON.parse(data[1]);
-            // console.log(cat_cart);
-            for (item in cat_cart) {
-                let name = cat_cart[item][1];
-                let qty = cat_cart[item][0];
-                console.log(name,qty);
-                mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">${name}<span class="badge badge-primary badge-pill">${qty}</span></li>`;
                 $('.citems').append(mystr);
             }
+            // Fill the order details
+
         });
     event.preventDefault();
 });
+//Displaying total items in cart 
+cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
+var sum = 0;
+for (var item in cat_cart) {
+    let qty = cat_cart[item][0];
+    sum += qty;
+}
+document.getElementById('cart').innerHTML = sum;
 </script>
 {% endblock %}
