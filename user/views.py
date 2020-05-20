@@ -93,7 +93,7 @@ def search(request):
     allProdid = []
     for cat in cats:
         prodtemp = Product.objects.filter(category=cat)
-        prod = [item for item in prodtemp if searchMatch(query,item)]
+        prod = [item for item in prodtemp if searchMatch(query.lower(),item)]
         n = len(prod)
         if n>0:
             nSlides = n//3+ceil((n/3)-(n//3))

@@ -108,6 +108,8 @@
 {% endblock %}
 {% block js %}
 <script>
+$("button").remove(".active");
+$("#dd").addClass("active");
 var slideIndex = 1;
 showDivs(slideIndex);
 

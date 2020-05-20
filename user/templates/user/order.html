@@ -97,23 +97,25 @@ hr{
 {% endblock %}
 {% block js %}
 <script type="text/javascript">
+$("#or").addClass("active");
 updateTable();
-$('.divdel').on('click', 'button.del', function() {
 
-    var idstr = this.id.toString();
+function dele(ele) {
+    var idstr = ele.id.toString();
     delete cat_cart[idstr];
     localStorage.setItem('cat_cart', JSON.stringify(cat_cart));
     console.log(localStorage.getItem('cat_cart'));
     $(".Order_table").empty();
     updateTable();
-    location.reload();
-});
+    // location.reload();
+}
+
 
 function updateTable() {
     cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
     console.log(cat_cart);
     let sum = 0;
-    let TotalPrice = 0;
+    var TotalPrice = 0;
     flag = true;
     str = `<div class="row" id="main_row">
         <div class="col">
@@ -137,12 +139,13 @@ function updateTable() {
         TotalPrice += price;
         str = `<div class="row"><div class="col"><center>${name}</center></div><div class="col">
             <center>${qty}</center></div><div class="col"><center>${price}</center></div><div class="col">
-            <center><span class="divdel"><button type="button" class="btn btn-danger del" id=${item}>Delete</button></span></center></div></div><hr>`
+            <center><span class="divdel"><button type="button" onclick = "dele(this)" class="btn btn-danger del" id=${item}>Delete</button></span></center></div></div><hr>`
         $('.Order_table').append(str);
     }
     if (flag === true) {
         str = `<div class="row"><div class="col-md-4"></div><div class="col-md-4">Uhhh!! Your cart is Empty....</div><div class="col-md-4"></div></div>`;
         $('.Order_table').append(str);
+        $('.Foo').empty();
     }
     else{
       str = `<div class="heading2 style="font-size:10px;" "><div class="row"><div class="col mt-3"><center>Total Price</center></div><div class="col"></div><div class="col mt-3"><center>${TotalPrice}</center></div><div class="col mt-2  "><center><a href="/user/checkout/"><button type="button" class="btn btn-danger">CheckOut</button></a></center></div></div></div>`

@@ -114,7 +114,7 @@ if (str !== "success") {
     }
 
     // If the add to cart button is clicked, add/increment the item
-    $('.divpr').on('click', 'button.cart', function() {
+    $('.cart').click(function() {
         var idstr = this.id.toString();
         if (cat_cart[idstr] != undefined) {
             qty = cat_cart[idstr][0] + 1;
@@ -125,6 +125,7 @@ if (str !== "success") {
             price = document.getElementById('price' + idstr).innerHTML;
             cat_cart[idstr] = [qty, name, parseInt(price)];
         }
+        console.log(cat_cart);
         updateCart(cat_cart);
 
     });
@@ -135,14 +136,15 @@ if (str !== "success") {
             temp_cart = [];
         else
             temp_cart = {{ allProdid | safe }};
-        // temp_cart = [];
+        console.log(cat_cart);
         let sum = 0;
         // console.log("temp_cart",temp_cart);
         for (var item of temp_cart) {
-            // console.log(typeof(item));
+          if(item in cat_cart){
+            console.log(typeof(item));
             document.getElementById("div" + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'>-</button> <span id='val" + item + "''>" +
                 cat_cart[item][0] + "</span> <button id='plus" + item + "' class= 'btn btn-primary plus'> + </button>";
-
+          } 
         }
         for (var item in cat_cart) {
             sum += cat_cart[item][0];
