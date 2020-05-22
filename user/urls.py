@@ -10,5 +10,5 @@ urlpatterns = [
     path("productview/", views.productview,name="ProductView"),
     path("checkout/", views.checkout,name="Checkout"),
     path("handlerequest/", views.handlerequest,name="HandleRequest"),
-    
+    path("logout/",views.logout,name="Logout")
 ]

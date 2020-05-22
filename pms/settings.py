@@ -56,7 +56,7 @@ ROOT_URLCONF = 'pms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['pms/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

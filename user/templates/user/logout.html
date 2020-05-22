@@ -1,0 +1,42 @@
+{% extends 'user/basic.html'%}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'user/checkout.css' %}">
+<style type="text/css">
+.main {
+    margin-top: 128px;
+    margin-left: 274px;
+    margin-right: 100px;
+}
+.msgBox{
+	margin-left: 38%;
+	margin-top: 30%;
+	height: 100px;
+	width: 300px;
+	border: solid 2px white;
+}
+</style>
+{% endblock %}
+{% block body %}
+<div class="main">
+    <div class="msgBox">
+    	<center>
+        <span>Are you sure to logout??</span>
+        <form method="post" action="/user/logout/">{% csrf_token %}
+            <input type="hidden" name="itemsJson" id="itemsJson">
+            <div class="btns" style="margin-top: 10%">
+                <button class="btn btn-primary no mr-2">No</button>
+                <button type="submit" class="btn btn-primary yes ml-2">Yes</button>
+            </div>
+        </form>
+    </center>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
+$('#itemsJson').val(JSON.stringify(cat_cart));
+localStorage.clear();
+</script>
+{% endblock %}

@@ -1,18 +1,46 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Product,Orders,OrderUpdate
+from .models import ProductList,Order,OrderUpd,Cart
 from math import ceil
 import json 
 from django.views.decorators.csrf import csrf_exempt  
 from PayTm import Checksum 
+from django.contrib.auth.decorators import login_required
+
 MERCHANT_KEY = 'kbzk1DSbJiV_O3p5';
 # Create your views here.
+
 def index(request):
-	return render(request,"user/index.html")
+    try:
+        t = Cart.objects.get(user = request.user)
+    except Exception as e:
+        t = None 
+    cart_items = {}
+    if t is not None:
+        cart_items = t.cart_items 
+    params = {"cart_items":json.dumps(cart_items)}
+    return render(request,"user/index.html",params)
 
 def about(request):
 	return render(request,"user/about.html")
 
+def logout(request):
+    if request.method=="POST":
+        items_json = request.POST.get('itemsJson','')
+        try:
+            t = Cart.objects.get(user=request.user)
+        except Exception as e:
+            t = None
+        if t is None:
+            cart = Cart(user=request.user,cart_items=items_json)
+            cart.save()
+        else:
+            t.cart_items = items_json 
+            t.save()
+        return redirect("/logout")
+    return render(request,"user/logout.html")
+
+@login_required
 def order(request):
 	return render(request,"user/order.html")
 
@@ -20,11 +48,12 @@ def productview(request):
 	return HttpResponse("At productview")
 
 def catproducts(request,cat):
-	product = Product.objects.filter(category=cat)
+	product = ProductList.objects.filter(category=cat)
 	n = len(product)
 	params = {'product':product,'length':n}
 	return render(request,"user/catproducts.html",params)
 
+@login_required
 def checkout(request):
     thank = "false" 
     if request.method =="POST":
@@ -37,10 +66,10 @@ def checkout(request):
         state=request.POST.get('state','')
         zip_code=request.POST.get('zip_code','')
         phone=request.POST.get('phone','')
-        order = Orders(items_json = items_json,name=name,email=email,address = address,city=city,
+        order = Order(user=request.user,items_json = items_json,name=name,email=email,address = address,city=city,
                         zip_code=zip_code,state=state, phone=phone,amount=amount)
         order.save()
-        update = OrderUpdate(order_id=order.order_id,update_desc="The order has been placed")
+        update = OrderUpd(user=request.user,order_id=order.order_id,update_desc="The order has been placed")
         update.save()
         thank = "true" 
         id = order.order_id 
@@ -60,14 +89,15 @@ def checkout(request):
         # return render(request,'user/paytm.html',{'param_dict':param_dict})
     return render(request,'user/checkout.html',{'thank':thank})
 
+@login_required
 def tracker(request):
     if request.method=="POST":
         OrderId=request.POST.get('OrderId','')
         email=request.POST.get('email','')
         try:
-            order = Orders.objects.filter(order_id=OrderId,email=email)
+            order = Order.objects.filter(user=request.user,order_id=OrderId,email=email)
             if len(order)>0:
-                update = OrderUpdate.objects.filter(order_id=OrderId)
+                update = OrderUpd.objects.filter(order_id=OrderId)
                 updates = []
                 for item in update:
                     updates.append({'text':item.update_desc,'time':item.timestamp})
@@ -88,11 +118,11 @@ def searchMatch(query,item):
 def search(request):
     query = request.GET.get('search')
     allProds = []
-    catProds = Product.objects.values('category','product_id')
+    catProds = ProductList.objects.values('category','product_id')
     cats = {item['category'] for item in catProds}
     allProdid = []
     for cat in cats:
-        prodtemp = Product.objects.filter(category=cat)
+        prodtemp = ProductList.objects.filter(category=cat)
         prod = [item for item in prodtemp if searchMatch(query.lower(),item)]
         n = len(prod)
         if n>0:

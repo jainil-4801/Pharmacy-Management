@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="dir" dir="ltr">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        font-family: montserrat;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        background: #15161d;
+        /* background-image: linear-gradient(-134deg, #FFA62E 0%, #FB962E 20%, #F8852E 40%, #F3742D 60%, #EF612D 80%, #EA4D2C 100%); */
+    }
+
+    .login-form {
+        width: 360px;
+        background: #f1f1f1;
+        height: 580px;
+        padding: 30px 40px;
+        border-radius: 10px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .login-form h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .txtb {
+        border-bottom: 2px solid #adadad;
+        position: relative;
+        margin: 30px 0 0;
+    }
+
+    #msg,
+    #message,
+    #message1,
+    #message2,
+    #message3,
+    #message4 {
+        display: none;
+        top: 100%;
+        z-index: 5;
+        display: none;
+        max-width: 100%;
+        padding: .5rem;
+        margin-top: .1rem;
+        font-size: 1rem;
+        line-height: 1;
+        color: #fff;
+        background-color: rgba(220, 53, 69, .8);
+        border-radius: .2rem;
+    }
+
+    .txtb input {
+        font-size: 15px;
+        color: #333;
+        border: none;
+        width: 100%;
+        outline: none;
+        background: none;
+        padding: 0 5px;
+        height: 34px;
+    }
+
+    .txtb span::before {
+        content: attr(data-placeholder);
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        color: #adadad;
+        transform: translateY(-50%);
+        z-index=-1;
+        transition: .5s;
+    }
+
+    .txtb span::after {
+        content='';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        transition: .5s;
+        background: #313840;
+        /* background: linear-gradient(-134deg, #FFA62E 0%, #FB962E 20%, #F8852E 40%, #F3742D 60%, #EF612D 80%, #EA4D2C 100%);; */
+    }
+
+    .focus+span::before {
+        top: -5px;
+    }
+
+    .focus+span::after {
+        width: 100%;
+    }
+
+    .logbtn {
+        display: block;
+        width: 100%;
+        height: 50px;
+        margin-top: 40px;
+        border-radius: none;
+        /* background: #34495e; */
+        background: #2e4ead;
+        /* background: linear-gradient(-134deg, #FFA62E 0%, #FB962E 20%, #F8852E 40%, #F3742D 60%, #EF612D 80%, #EA4D2C 100%);; */
+        background-size: 200%;
+        color: #fff;
+        outline: none;
+        cursor: pointer;
+        transition: .5s;
+    }
+
+    .bottom-text {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 15px;
+    }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" charset="utf-8"></script>
+    <title></title>
+</head>
+
+<body>
+    <form class="login-form" action="/" method="post">
+        {% csrf_token %}
+        <h1>Sign Up</h1>
+        <div id="msg">
+            {{msg}}
+        </div>
+        <div class="txtb">
+            <input class="text" id="first" name="first_name">
+            <span data-placeholder="First Name"></span>
+        </div>
+        <div id="message3">
+            Please choose valid First name...
+        </div>
+        <div class="txtb">
+            <input class="text" id="last" name="last_name">
+            <span data-placeholder="Last Name"></span>
+        </div>
+        <div id="message4">
+            Please choose valid Last name...
+        </div>
+        <div class="txtb">
+            <input class="text" id="user" name="username">
+            <span data-placeholder="Username"></span>
+        </div>
+        <div id="message1">
+            Please choose valid username...
+        </div>
+        <div class="txtb">
+            <input type="password" id="psw" class="password" name="password1">
+            <span data-placeholder="Password"></span>
+        </div>
+        <div id="message2">
+            Wrong/invalid password. Try Again..
+        </div>
+        <div class="txtb">
+            <input type="password" id="psw-rep" name="password2">
+            <span data-placeholder="Re-enter password"></span>
+        </div>
+        <div id="message">
+            Those passwords didn't match.Try Again....
+        </div>
+        <input type="Submit" class="logbtn" id="btn" value="Create Account">
+        <div class="bottom-text">
+            Already have one? <a href="/login">Sign in</a>
+        </div>
+    </form>
+    <script type="text/javascript">
+    $(".txtb input").on("focus", function() {
+        $(this).addClass("focus");
+    });
+
+    $(".txtb input").on("blur", function() {
+        if ($(this).val() == "")
+            $(this).removeClass("focus");
+    });
+    var myInput2 = document.getElementById("psw-rep");
+    var myInput = document.getElementById("psw");
+    var submit = document.getElementById("btn");
+    var userid = document.getElementById("user");
+    var firstid = document.getElementById("first");
+    var lastid = document.getElementById("last");
+
+    myInput2.onfocus = function() {
+        document.getElementById("message").style.display = "None";
+        document.getElementById("message2").style.display = "None";
+    }
+    myInput.onfocus = function() {
+        document.getElementById("message").style.display = "None";
+        document.getElementById("message2").style.display = "None";
+    }
+    userid.onfocus = function() {
+        document.getElementById("message1").style.display = "None";
+        document.getElementById("msg").style.display = "None";
+    }
+    firstid.onfocus = function() {
+        document.getElementById("message3").style.display = "None";
+    }
+    lastid.onfocus = function() {
+        document.getElementById("message4").style.display = "None";
+    }
+
+    myInput2.onblur = function() {
+        console.log(myInput.value);
+        console.log(myInput2.value);
+        if (myInput.value !== "" && myInput.value !== myInput2.value) {
+            myInput2.value = "";
+            document.getElementById("message").style.display = "block";
+        }
+    }
+
+
+    submit.onclick = function() {
+        if (firstid.value === "") {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById("message3").style.display = "block";
+        } else if (lastid.value === "") {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById("message4").style.display = "block";
+        } else if (userid.value === "") {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById("message1").style.display = "block";
+        } else if (myInput.value === "" || myInput2.value == "" || myInput.value !== myInput2.value) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById("message2").style.display = "block";
+        } else if ("{{ msg }}" !== "All good") {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById("msg").style.display = "block";
+        }
+    }
+    </script>
+</body>
+
+</html>
