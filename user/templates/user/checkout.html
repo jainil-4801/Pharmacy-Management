@@ -107,7 +107,12 @@ if ($.isEmptyObject(cat_cart)) {
         $('.items').append(mystr);
     }
 }
-document.getElementById('cart').innerHTML = sum;
+if(sum==0){
+    document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>'   
+}
+else{
+    document.getElementById('cart').innerHTML = sum;
+}
 document.getElementById('totalPrice').innerHTML = totalPrice;
 $('#itemsJson').val(JSON.stringify(cat_cart)); 
 $('#amount').val($('#totalPrice').html());

@@ -16,13 +16,12 @@
     body {
         min-height: 100vh;
         background: #15161d;
-        /* background-image: linear-gradient(-134deg, #FFA62E 0%, #FB962E 20%, #F8852E 40%, #F3742D 60%, #EF612D 80%, #EA4D2C 100%); */
     }
 
     .login-form {
         width: 360px;
         background: #f1f1f1;
-        height: 580px;
+        height: 620px;
         padding: 30px 40px;
         border-radius: 10px;
         position: absolute;
@@ -47,7 +46,8 @@
     #message1,
     #message2,
     #message3,
-    #message4 {
+    #message4,
+    #message5 {
         display: none;
         top: 100%;
         z-index: 5;
@@ -91,7 +91,6 @@
         height: 2px;
         transition: .5s;
         background: #313840;
-        /* background: linear-gradient(-134deg, #FFA62E 0%, #FB962E 20%, #F8852E 40%, #F3742D 60%, #EF612D 80%, #EA4D2C 100%);; */
     }
 
     .focus+span::before {
@@ -108,9 +107,7 @@
         height: 50px;
         margin-top: 40px;
         border-radius: none;
-        /* background: #34495e; */
         background: #2e4ead;
-        /* background: linear-gradient(-134deg, #FFA62E 0%, #FB962E 20%, #F8852E 40%, #F3742D 60%, #EF612D 80%, #EA4D2C 100%);; */
         background-size: 200%;
         color: #fff;
         outline: none;
@@ -119,7 +116,7 @@
     }
 
     .bottom-text {
-        margin-top: 20px;
+        margin-top: 10px;
         text-align: center;
         font-size: 15px;
     }
@@ -129,6 +126,7 @@
 </head>
 
 <body>
+    <!-- <div class="login-form"> -->
     <form class="login-form" action="/" method="post">
         {% csrf_token %}
         <h1>Sign Up</h1>
@@ -160,6 +158,7 @@
             <input type="password" id="psw" class="password" name="password1">
             <span data-placeholder="Password"></span>
         </div>
+        <span style="color: #adadad;font-size: 12px;">Your password must contain at least 8 characters.</span>
         <div id="message2">
             Wrong/invalid password. Try Again..
         </div>
@@ -167,13 +166,20 @@
             <input type="password" id="psw-rep" name="password2">
             <span data-placeholder="Re-enter password"></span>
         </div>
+        <span style="color: #adadad;font-size: 12px;">Enter the same password as before, for verification.</span>
         <div id="message">
             Those passwords didn't match.Try Again....
         </div>
+        <div id="message5">
+            Password must have at least 8 characters.
+        </div>
         <input type="Submit" class="logbtn" id="btn" value="Create Account">
         <div class="bottom-text">
-            Already have one? <a href="/login">Sign in</a>
+            Already have one?
+            <a href="/login">Sign in</a>
+            <!-- <a href="#">Sign in</a> -->
         </div>
+        <!-- </div> -->
     </form>
     <script type="text/javascript">
     $(".txtb input").on("focus", function() {
@@ -194,10 +200,12 @@
     myInput2.onfocus = function() {
         document.getElementById("message").style.display = "None";
         document.getElementById("message2").style.display = "None";
+        document.getElementById("message5").style.display = "None";
     }
     myInput.onfocus = function() {
         document.getElementById("message").style.display = "None";
         document.getElementById("message2").style.display = "None";
+        document.getElementById("message5").style.display = "None";
     }
     userid.onfocus = function() {
         document.getElementById("message1").style.display = "None";
@@ -221,6 +229,7 @@
 
 
     submit.onclick = function() {
+        // console.log(myInput2.value.length);
         if (firstid.value === "") {
             event.preventDefault();
             event.stopPropagation();
@@ -241,6 +250,10 @@
             event.preventDefault();
             event.stopPropagation();
             document.getElementById("msg").style.display = "block";
+        } else if (myInput2.value.length < 8) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById("message5").style.display = "block";
         }
     }
     </script>

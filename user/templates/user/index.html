@@ -109,9 +109,12 @@
 {% block js %}
 <script>
 $("#dd").addClass("active");
-console.log({{cart_items|safe}});
+console.log("{{msg}}")
 if (localStorage.getItem('cat_cart') == null) {
-    localStorage.cat_cart = {{cart_items|safe}};
+    if("{{msg}}"=="All good")
+        localStorage.cat_cart = {{cart_items|safe}};
+    else 
+        localStorage.cat_cart = {};
 }
 var slideIndex = 1;
 showDivs(slideIndex);
@@ -140,16 +143,24 @@ function showDivs(n) {
     dots[slideIndex - 1].className += " w3-red";
 }
 
-//Displaying total items in cart 
-cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
+//Displaying total items in cart
+if (localStorage.getItem('cat_cart') == {}) {
+    var cat_cart = {};
+} else {
+    cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
+} 
 console.log(cat_cart);
 var sum = 0;
 for(var item in cat_cart){
     let qty = cat_cart[item][0];
     sum += qty;
 }
-document.getElementById('cart').innerHTML = sum;
-
+if(sum==0){
+    document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>'   
+}
+else{
+    document.getElementById('cart').innerHTML = sum;
+}
 
 </script>
 {% endblock %}

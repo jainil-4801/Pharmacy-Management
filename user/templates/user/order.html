@@ -25,63 +25,65 @@
     float: right;
 }
 
-.heading{
-  top: 24%;
-  left: 32%;
-  color: white;
-  z-index: 5;
-  position: absolute;
-  width: 760px;
-  height: 45px;
-  background:#4360b5;
+.heading {
+    top: 24%;
+    left: 32%;
+    color: white;
+    z-index: 5;
+    position: absolute;
+    width: 760px;
+    height: 45px;
+    background: #4360b5;
 }
 
-.h{
-  margin: 10px;
-  padding-left: 20px;
+.h {
+    margin: 10px;
+    padding-left: 20px;
 }
 
-.Order_table{
-  top: 60%;
-  left: 60%;
-  color: white;
-  transform: translate(-50%,-50%);
-  position: absolute;
-  width: 800px;
-  height: 400px;
-  background:rgba(37,45,66,0.7);
-  overflow: auto;
-  text-align: justify-all;
+.Order_table {
+    top: 60%;
+    left: 60%;
+    color: white;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    width: 800px;
+    height: 400px;
+    background: rgba(37, 45, 66, 0.7);
+    overflow: auto;
+    text-align: justify-all;
 }
 
 
-.Order_table #main_row{
-  color: #888;
-  margin:20px;
-  margin-top: 27px;
-  margin-bottom: 27px;
+.Order_table #main_row {
+    color: #888;
+    margin: 20px;
+    margin-top: 27px;
+    margin-bottom: 27px;
 }
 
-.Order_table .row{
-  color: white;
-  margin: 20px;
-}
-.Order_table #main_row .col{
-  font-size: 15px;
+.Order_table .row {
+    color: white;
+    margin: 20px;
 }
 
-.Order_table .row .col{
-  font-size: 16px;
+.Order_table #main_row .col {
+    font-size: 15px;
 }
-hr{
-    background: rgba(255,255,255,0.1);
+
+.Order_table .row .col {
+    font-size: 16px;
+}
+
+hr {
+    background: rgba(255, 255, 255, 0.1);
     margin-left: 20px;
     margin-right: 20px;
 }
 
-.btn-danger{
-  width: 120px;
-  height: 36px;
+.btn-danger {
+    width: 120px;
+    height: 36px;
 }
 </style>
 {% endblock %}
@@ -92,7 +94,6 @@ hr{
 <div class="Order_table">
 </div>
 <span class="Foo">
-    
 </span>
 {% endblock %}
 {% block js %}
@@ -112,7 +113,11 @@ function dele(ele) {
 
 
 function updateTable() {
-    cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
+    if (localStorage.getItem('cat_cart') == {}) {
+        var cat_cart = {};
+    } else {
+        cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
+    } 
     console.log(cat_cart);
     let sum = 0;
     var TotalPrice = 0;
@@ -146,12 +151,15 @@ function updateTable() {
         str = `<div class="row"><div class="col-md-4"></div><div class="col-md-4">Uhhh!! Your cart is Empty....</div><div class="col-md-4"></div></div>`;
         $('.Order_table').append(str);
         $('.Foo').empty();
+    } else {
+        str = `<div class="heading2 style="font-size:10px;" "><div class="row"><div class="col mt-3"><center>Total Price</center></div><div class="col"></div><div class="col mt-3"><center>${TotalPrice}</center></div><div class="col mt-2  "><center><a href="/user/checkout/"><button type="button" class="btn btn-danger">CheckOut</button></a></center></div></div></div>`
+        $('.Foo').append(str);
     }
-    else{
-      str = `<div class="heading2 style="font-size:10px;" "><div class="row"><div class="col mt-3"><center>Total Price</center></div><div class="col"></div><div class="col mt-3"><center>${TotalPrice}</center></div><div class="col mt-2  "><center><a href="/user/checkout/"><button type="button" class="btn btn-danger">CheckOut</button></a></center></div></div></div>`
-    $('.Foo').append(str);  
+    if (sum == 0) {
+        document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>'
+    } else {
+        document.getElementById('cart').innerHTML = sum;
     }
-    document.getElementById('cart').innerHTML = sum;
 
 }
 </script>

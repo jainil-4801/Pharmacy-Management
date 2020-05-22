@@ -35,7 +35,7 @@
                     <p class="card-text">{{i.desc1|slice:"0:23"}}...</p>
                     <h6>Price: <span id="pricepr{{i.product_id}}">{{i.price}}</span></h6>
                     <span id="divpr{{i.product_id}}" class="divpr">
-                        <button id="pr{{i.product_id}}" class="btn btn-primary cart">Add to Cart</button>
+                        <button id="pr{{i.product_id}}" class="btn btn-primary cart" onclick="add_cart(this)">Add to Cart</button>
                     </span>
                     <a href="#"><button id="qv{{i.product_id}}" class="btn btn-primary">QuickView</button></a>
                 </div>
@@ -62,8 +62,8 @@ if (localStorage.getItem('cat_cart') == null) {
 }
 
 // If the add to cart button is clicked, add/increment the item
-$('.divpr').on('click', 'button.cart', function() {
-    var idstr = this.id.toString();
+function add_cart(thu){
+    var idstr = thu.id.toString();
     if (cat_cart[idstr] != undefined) {
         qty = cat_cart[idstr][0] + 1;
         cat_cart[idstr][0] = qty;
@@ -75,28 +75,43 @@ $('.divpr').on('click', 'button.cart', function() {
     }
     updateCart(cat_cart);
 
-});
+}
 
 
 function updateCart(cat_cart) {
+    if ({{ allProdid | safe }}.length == 0)
+        temp_cart = [];
+    else
+        temp_cart = {{ allProdid | safe }};
+    console.log(cat_cart);
     let sum = 0;
+    // console.log("temp_cart",temp_cart);
+    for (var item of temp_cart) {
+        if (item in cat_cart) {
+            console.log(typeof(item));
+            document.getElementById("div" + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'>-</button> <span id='val" + item + "''>" +
+                cat_cart[item][0] + "</span> <button id='plus" + item + "' class= 'btn btn-primary plus'> + </button>";
+        }
+    }
     for (var item in cat_cart) {
-        document.getElementById("div" + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'>-</button> <span id='val" + item + "''>" +
-            cat_cart[item][0] + "</span> <button id='plus" + item + "' class= 'btn btn-primary plus'> + </button>";
-            sum+=cat_cart[item][0];
+        sum += cat_cart[item][0];
     }
     localStorage.setItem('cat_cart', JSON.stringify(cat_cart));
-    document.getElementById('cart').innerHTML = sum;
+    if (sum == 0) {
+        document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>'
+    } else {
+        document.getElementById('ordu').innerHTML = 'Orders <span id="cart" style="margin-left: 8px;border-radius: 50%;padding: 1.5px 7px;background: #3b4cad;">'+sum+'</span>';
+    }
     // document.getElementById('cart').innerHTML = Object.keys(cat_cart).length;
 }
 // If plus or minus button is clicked, then change the cart as well as the display value
 $('.divpr').on("click", "button.minus", function() {
     a = this.id.slice(7, );
-    if(cat_cart['pr' + a][0] > 0){
-        cat_cart['pr' + a][0] -= 1;    
+    if (cat_cart['pr' + a][0] > 0) {
+        cat_cart['pr' + a][0] -= 1;
     }
     if (cat_cart['pr' + a][0] == 0) {
-        document.getElementById('divpr' + a).innerHTML = '<button id="pr' + a + '" class ="btn btn-primary cart">Add to Cart</button>';
+        document.getElementById('divpr' + a).innerHTML = '<button id="pr' + a + '" class ="btn btn-primary cart" onclick="add_cart(this)">Add to Cart</button>';
         delete cat_cart['pr' + a];
     } else {
         document.getElementById('valpr' + a).innerHTML = cat_cart['pr' + a][0];

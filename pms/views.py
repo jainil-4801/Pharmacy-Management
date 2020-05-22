@@ -28,13 +28,11 @@ def register(request):
 		if password1==password2:
 			if User.objects.filter(username=username).exists():
 				params = {'msg':'username already exists'}
-			else:
-				user = User(first_name=first_name,last_name=last_name,username=username,password=password1)
-				user.save()
-				return redirect("/login")
-		return redirect("/user")
-	else:
-		return render(request,'register.html',params)
+			elif len(password1)>=8:
+				print(password1,password2)
+				User.objects.create_user(first_name=first_name,last_name=last_name,username=username,password=password1)
+				return redirect("/login")	
+	return render(request,'register.html',params)
 def logout(request):
 	auth.logout(request)
 	return redirect("/login")

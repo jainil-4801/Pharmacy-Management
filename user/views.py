@@ -16,9 +16,12 @@ def index(request):
     except Exception as e:
         t = None 
     cart_items = {}
+    msg = "All good"
     if t is not None:
-        cart_items = t.cart_items 
-    params = {"cart_items":json.dumps(cart_items)}
+        cart_items = t.cart_items
+    else:
+        msg = "cart_items is empty" 
+    params = {"cart_items":json.dumps(cart_items),"msg":msg}
     return render(request,"user/index.html",params)
 
 def about(request):
@@ -48,10 +51,13 @@ def productview(request):
 	return HttpResponse("At productview")
 
 def catproducts(request,cat):
-	product = ProductList.objects.filter(category=cat)
-	n = len(product)
-	params = {'product':product,'length':n}
-	return render(request,"user/catproducts.html",params)
+    product = ProductList.objects.filter(category=cat) 
+    n = len(product)
+    allProdid = []
+    for i in product:
+        allProdid.append('pr'+str(i.product_id))
+    params = {'product':product,'length':n,'allProdid':allProdid}
+    return render(request,"user/catproducts.html",params)
 
 @login_required
 def checkout(request):
