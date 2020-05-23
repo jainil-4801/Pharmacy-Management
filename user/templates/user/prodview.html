@@ -1,0 +1,109 @@
+{% extends 'user/basic.html'%}
+{% load static %}
+{% block title %}{{product.product_name}}{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'user/order.css' %}">
+<style type="text/css">
+.main {
+    margin-top: 128px;
+    margin-left: 218px;
+    margin-right: 70px;
+}
+
+.prod_image{
+	width: 415px;
+	height: 490px;
+	display: block;
+	vertical-align: middle;
+	background: white;
+	margin-left: 30px;
+	border: 2px solid black;
+}
+
+.desc2{
+	margin-top: 54px;
+}
+
+.card-body ul li{
+	list-style-type: square;
+}
+
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+
+</style>
+{% endblock %}
+{% block body %}
+<div class="main">
+    <div class="row">
+        <div class="col-md-5">
+            <img class="prod_image" src="/media/{{product.image}}">
+        </div>
+        <div class="col-md-6 mb-0" style="color: white; margin-left: 90px;">
+            <h2> {{product.product_name}} </h2>
+            <h5 class="desc1">{{product.desc1}}</h5>
+            <div class="desc2">
+                <strong>{{product.product_name}}</strong> {{product.desc2}}
+            </div>
+            <div class="accordion" id="accordionExample">
+                <div class="card features" style="margin-top: 29px; background: rgba(37,45,66,0.7);">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color: white; border: 0px; text-decoration: none;">
+                                 PRODUCT FEATURES
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" style="padding-left: 15px;">
+                        <div class="card-body">
+                            <ul>
+                            	{% for i in features %}
+								<li>{{i}}</li>
+								{% endfor %}
+							</ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card use" style="margin-top: 14px; background: rgba(37,45,66,0.7);">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: white; border: 0px; text-decoration: none">
+                                SUGGESTED USE
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <p>{{product.use}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+//Displaying total items in cart 
+if (localStorage.getItem('cat_cart') == {}) {
+    var cat_cart = {};
+} else {
+    cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
+} 
+var sum = 0;
+for (var item in cat_cart) {
+    let qty = cat_cart[item][0];
+    sum += qty;
+}
+if(sum==0){
+    document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>'   
+}
+else{
+    document.getElementById('cart').innerHTML = sum;
+}
+</script>
+{% endblock %}

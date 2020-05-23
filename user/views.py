@@ -22,6 +22,7 @@ def index(request):
     else:
         msg = "cart_items is empty" 
     params = {"cart_items":json.dumps(cart_items),"msg":msg}
+    print(cart_items)
     return render(request,"user/index.html",params)
 
 def about(request):
@@ -47,8 +48,10 @@ def logout(request):
 def order(request):
 	return render(request,"user/order.html")
 
-def productview(request):
-	return HttpResponse("At productview")
+def productview(request,myid):
+    product = ProductList.objects.filter(product_id=myid)
+    features = product[0].features.split('.')
+    return render(request,"user/prodview.html",{'product':product[0],'features':features[:len(features)-1]})
 
 def catproducts(request,cat):
     product = ProductList.objects.filter(category=cat) 
