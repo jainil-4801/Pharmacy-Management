@@ -111,6 +111,7 @@ body{
     margin-bottom: 1px;
     color: #92a6e2;
     white-space: nowrap;
+    text-decoration: none;  
 }
 
 .wrapper .sidebar ul li a:before{

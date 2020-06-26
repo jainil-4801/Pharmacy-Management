@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class ProductList(models.Model):
-    product_id = models.AutoField(primary_key=True)
+    product_id = models.AutoField(primary_key=True,blank=True,null=False)
     product_name = models.CharField(max_length=100,default='') 
     category = models.CharField(max_length=50,default='')
     desc1 = models.CharField(max_length=300,default='') 
@@ -20,12 +20,13 @@ class ProductList(models.Model):
     def __str__(self):
         return self.product_name
 
-class Cart(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,default=None)
+class Cart_Data(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default=0)
+    product = models.ForeignKey(ProductList,on_delete=models.CASCADE,default=0)
+    quantity = models.PositiveIntegerField(default=0)
     cart_id = models.AutoField(primary_key=True)
-    cart_items = models.CharField(max_length=1000)
 
-class Order(models.Model):
+class Order_Table(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,default=None)
     order_id = models.AutoField(primary_key=True)
     items_json = models.CharField(max_length=500)

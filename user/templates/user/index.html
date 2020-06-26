@@ -7,9 +7,17 @@
 .button {
     margin: 10px 6px;
 }
-
-.bb {
-    margin-left: 0px;
+.bb{
+    background-color: #4360b5;
+    border: none;
+    color: white;
+    padding: 20px 57px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 20px;
+    cursor: pointer;
 }
 </style>
 {% endblock %}
@@ -38,19 +46,19 @@
         </center>
         <div id="column">
             <img class="Product" src="https://goodmockups.com/wp-content/uploads/2020/01/Free-Honey-Jar-Mockup-PSD-Set-2.jpg" alt="health_products" style="width:80%;">
-            <button class="button">Up to 80% off</button>
+            <a href="/user/discount/wellness/80"><button class="button">Up to 80% off</button></a>
         </div>
         <div id="column">
             <img class="Product" src="https://images-na.ssl-images-amazon.com/images/I/81tmMIfhb0L._SY606_.jpg" alt="family_nutrition" style="width:80%;">
-            <button class="button">Up to 40% off</button>
+            <a href="/user/discount/wellness/40"><button class="button">Up to 40% off</button></a>
         </div>
         <div id="column">
             <img class="Product" src="https://rukminim1.flixcart.com/image/352/352/jpr86fk0/diaper/b/y/p/m-new-diapers-pants-medium-76-count-76-pampers-original-imafbxba677nzu9u.jpeg?q=70" alt="baby_and_infant" style="width:80%;">
-            <button class="button">Up to 50% off</button>
+            <a href="/user/discount/wellness/50"><button class="button">Up to 50% off</button></a>
         </div>
         <div id="column">
             <img class="Product" src="https://5.imimg.com/data5/SF/WO/MY-50907774/hamdard-safi-500ml-500x500.jpg" alt="baby_and_infant" style="width:80%;">
-            <button class="button">Up to 60% off</button>
+            <a href="/user/discount/wellness/50"><button class="button">Up to 60% off</button></a>
         </div>
     </div>
     <br /><br />
@@ -62,19 +70,19 @@
         </center>
         <div id="column">
             <img class="Product" src="https://cdn.shopify.com/s/files/1/1295/3439/products/1_31256a44-f090-4502-9d04-a78f20104524_1024x1024.jpg?v=1571458036" alt="health_products" style="width:80%;">
-            <button class="button">Up to 80% off</button>
+            <a href="/user/discount/Health Juices/80"><button class="button">Up to 80% off</button></a>
         </div>
         <div id="column">
             <img class="Product" src="https://shop.coles.com.au/wcsstore/Coles-CAS/images/7/4/7/7477668.jpg" alt="family_nutrition" style="width:80%;">
-            <button class="button">Up to 40% off</button>
+            <a href="/user/discount/Health Juices/40"><button class="button">Up to 40% off</button></a>
         </div>
         <div id="column">
             <img class="Product" src="https://images-na.ssl-images-amazon.com/images/I/61jL2GCuKLL._SX425_PIbundle-24,TopRight,0,0_AA425SH20_.jpg" alt="baby_and_infant" style="width:80%;">
-            <button class="button">Up to 50% off</button>
+            <a href="/user/discount/Health Juices/50"> <button class="button">Up to 50% off</button></a>
         </div>
         <div id="column">
             <img class="Product" src="https://sc01.alicdn.com/kf/UTB8HtDBPGrFXKJk43Ovq6ybnpXad.jpg" alt="baby_and_infant" style="width:80%;">
-            <button class="button">Up to 60% off</button>
+            <a href="/user/discount/Health Juices/60"><button class="button">Up to 60% off</button></a>
         </div>
     </div>
     <br /><br />
@@ -85,7 +93,7 @@
         </center>
         <div id="column1">
             <img class="Product" src="https://lh3.googleusercontent.com/jfhnIZASUU6B5ETz1et-gRlcSGWRml6UBr-_H67B9Y62mcYXMoSmas1LbO-jhsrVZ1iIEaxy=w1080-h608-p-no-v0" alt="baby_and_infant" style="width:80%;">
-            <a href="/user/category/Homeopathic"><button class="bb categories-homeo">Homeopathic</button></a>
+            <a href="/user/category/Homeopathic" style="margin-left: -16px;"><button class="bb categories-homeo">Homeopathic</button></a>
         </div>
         <div id="column1">
             <img class="Product" src="https://ajp.com.au/wp-content/uploads/2015/03/Dollarphotoclub_75783184.jpg" alt="baby_and_infant" style="width:80%;">
@@ -95,6 +103,19 @@
             <img class="Product" src="https://5.imimg.com/data5/CS/MY/MY-3092624/ayurvedic-medicine-500x500.jpg" alt="baby_and_infant" style="width:80%;">
             <a href="/user/category/Ayurvedic"><button class="bb categories-ayu">Ayurvedic</button></a>
         </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-2 ml-5"></div>
+        <div class="col-md-4">
+            <img class="Product" src="https://blog.grabon.in/wp-content/uploads/2019/01/pinhealth.png" alt="baby_and_infant" style="width:80%;">
+            <a href="/user/category/wellness" style="margin-left: -16px;"><button class="bb categories-wellness">Wellness Products</button></a>
+        </div>
+        <div class="col-md-4">
+            <img class="Product" src="https://www.newfoodmagazine.com/wp-content/uploads/featured-image_for-web-11-750x500.jpg" alt="baby_and_infant" style="width:80%;">
+            <a href="/user/category/Health Juices"><button class="bb categories-juices">Health Juices</button></a>
+        </div>
+        <div class="col-md-2"></div>
     </div>
     <br /><br />
     <div id="footer">
@@ -109,25 +130,6 @@
 {% endblock %}
 {% block js %}
 <script>
-$("#dd").addClass("active");
-console.log("{{msg}}");
-if ("{{msg}}" == "All good") {
-    localStorage.cat_cart = {{ cart_items | safe }};
-} else {
-    localStorage.cat_cart = {};
-}
-console.log(localStorage.cat_cart)
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-    showDivs(slideIndex += n);
-}
-
-function currentDiv(n) {
-    showDivs(slideIndex = n);
-}
-
 function showDivs(n) {
     var i;
     var x = document.getElementsByClassName("mySlides");
@@ -145,21 +147,11 @@ function showDivs(n) {
 }
 
 //Displaying total items in cart
-if (localStorage.getItem('cat_cart') == {}) {
-    var cat_cart = {};
-} else {
-    cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
-}
-console.log(cat_cart);
-var sum = 0;
-for (var item in cat_cart) {
-    let qty = cat_cart[item][0];
-    sum += qty;
-}
-if (sum == 0) {
-    document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>'
-} else {
-    document.getElementById('cart').innerHTML = sum;
-}
+    if("{{total_item}}"==="None"){
+         document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>';
+    }
+    else{
+        document.getElementById('cart').innerHTML = {{total_item}};
+    }
 </script>
 {% endblock %}

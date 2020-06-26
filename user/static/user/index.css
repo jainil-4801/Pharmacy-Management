@@ -198,35 +198,11 @@ body{
         margin: 10px 6px;
         cursor: pointer;
     }
-    .categories-homeo{
+    .bb{
         background-color: #4360b5;
         border: none;
         color: white;
         padding: 20px 80px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 10px 20px;
-        cursor: pointer;
-    }
-    .categories-allo{
-        background-color: #4360b5;
-        border: none;
-        color: white;
-        padding: 20px 95px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 10px 20px;
-        cursor: pointer;
-    }
-    .categories-ayu{
-        background-color: #4360b5;
-        border: none;
-        color: white;
-        padding: 20px 95px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -259,35 +235,11 @@ body{
         cursor: pointer;
 
     }
-    .categories-homeo{
+    .bb{
         background-color: #4360b5;
         border: none;
         color: white;
         padding: 20px 8px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 11px;
-        margin: 1px 1px;
-        cursor: pointer;
-    }
-    .categories-allo{
-        background-color: #4360b5;
-        border: none;
-        color: white;
-        padding: 20px 18px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 11px;
-        margin: 1px 1px;
-        cursor: pointer;
-    }
-    .categories-ayu{
-        background-color: #4360b5;
-        border: none;
-        color: white;
-        padding: 20px 18px;
         text-align: center;
         text-decoration: none;
         display: inline-block;

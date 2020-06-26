@@ -21,10 +21,19 @@ body{
             <h2>Step 1 - Checkout - Review Your Cart Items</h2>
             <div class="my-4">
                 <ul class="list-group items" style="color: black;font-size:15px;">
+                    {% if comb_list %}
+                        {% for product_name,qty in comb_list %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center"> {{ product_name }}
+                                <span class="badge badge-primary badge-pill">{{qty}}</span> 
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        <p style="color: white">Your Cart is empty, please add some items to your cart before checking out!!</p>
+                    {% endif %}
                 </ul>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mt-3">
-                        <li class="breadcrumb-item active" aria-current="page">Your cart total is &nbsp;<b>Rs.<span id="totalPrice"></span></b>. Enter your details below & place your order. Thanks for using My Awesome Cart.</li>
+                        <li class="breadcrumb-item active" aria-current="page">Your cart total is &nbsp;<b>Rs.<span id="totalPrice">{{ total_price }}</span></b>. Enter your details below & place your order. Thanks for using RIJAS Online PMS.</li>
                     </ol>
                 </nav>
             </div>
@@ -33,7 +42,7 @@ body{
             <h2>Step 2 - Enter Address & Other Details:</h2>
             <form method="post" action="/user/checkout/">{% csrf_token %}
                 <input type="hidden" name="itemsJson" id="itemsJson">
-                <input type="hidden" name="amount" id="amount">
+                <input type="hidden" name="amount" value = "{{total_price}}" id="amount">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputname">Name</label>
@@ -76,51 +85,29 @@ body{
     </div>
 </div>
 {% endblock %}
-{% block js %}
-<script type="text/javascript">
 
-if(localStorage.getItem('cat_cart') == null){
-      var cat_cart = {};
-  }
-  else{
-    cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
-  }
-// console.log(cat_cart);
-var totalPrice = 0;
-if ($.isEmptyObject(cat_cart)) {
-    // if object is empty
-    let mystr = "<p>Your Cart is empty, please add some items to your cart before checking out!!</p>"
-    $('.items').append(mystr);
-    document.getElementById('cart').innerHTML = 0;
-} else {
-    var sum = 0;
-    for (item in cat_cart) {
-        let name = cat_cart[item][1];
-        let qty = cat_cart[item][0];
-        sum += qty;
-        let itemPrice = cat_cart[item][2];
-        totalPrice = totalPrice + qty * itemPrice;
-        mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
-        ${name}
-        <span class="badge badge-primary badge-pill">${qty}</span>
-      </li>`;
-        $('.items').append(mystr);
+{% block js %}
+
+<script type="text/javascript">
+    var thanku = {{thank}};
+    cat_cart = {};
+    if(thanku){
+        alert("Thanks for ordering with us. Your order id is {{id}}. Use it to track your order using the order tracker");
+      document.location = "/user";
+    } 
+    else {
+        var items = {{ prod_list | safe }};
+        var quantity = {{ quant_list | safe }};
+        for (var i = 0; i < items.length; i++)
+            cat_cart[items[i]] = quantity[i];
     }
-}
-if(sum==0){
-    document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>'   
-}
-else{
-    document.getElementById('cart').innerHTML = sum;
-}
-document.getElementById('totalPrice').innerHTML = totalPrice;
-$('#itemsJson').val(JSON.stringify(cat_cart)); 
-$('#amount').val($('#totalPrice').html());
-var thanku = {{thank}};
-if(thanku){
-    alert("Thanks for ordering with us. Your order id is {{id}}. Use it to track your order using the order tracker");
-  localStorage.clear();
-  document.location = "/user";
-} 
+    if("{{total_item}}"==="None"){
+        document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>';
+    }
+    else{
+        document.getElementById('cart').innerHTML = {{total_item}};
+    }
+    // console.log(cat_cart);
+    $('#itemsJson').val(JSON.stringify(cat_cart)); 
 </script>
 {% endblock %}

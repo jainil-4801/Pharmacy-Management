@@ -9,7 +9,7 @@
     width: 760px;
     top: 86%;
     color: white;
-    left: 32%;
+    left: 30%;
     height: 50px;
     background: #4360b5;
     position: absolute;
@@ -27,7 +27,7 @@
 
 .heading {
     top: 24%;
-    left: 32%;
+    left: 30%;
     color: white;
     z-index: 5;
     position: absolute;
@@ -81,7 +81,8 @@ hr {
     margin-right: 20px;
 }
 
-.btn-danger {
+.btn-danger,
+.btn-success {
     width: 120px;
     height: 36px;
 }
@@ -92,37 +93,7 @@ hr {
     <div class="h">Orders / Page</div>
 </div>
 <div class="Order_table">
-</div>
-<span class="Foo">
-</span>
-{% endblock %}
-{% block js %}
-<script type="text/javascript">
-$("#or").addClass("active");
-updateTable();
-
-function dele(ele) {
-    var idstr = ele.id.toString();
-    delete cat_cart[idstr];
-    localStorage.setItem('cat_cart', JSON.stringify(cat_cart));
-    console.log(localStorage.getItem('cat_cart'));
-    $(".Order_table").empty();
-    updateTable();
-    // location.reload();
-}
-
-
-function updateTable() {
-    if (localStorage.getItem('cat_cart') == {}) {
-        var cat_cart = {};
-    } else {
-        cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
-    } 
-    console.log(cat_cart);
-    let sum = 0;
-    var TotalPrice = 0;
-    flag = true;
-    str = `<div class="row" id="main_row">
+    <div class="row" id="main_row">
         <div class="col">
             <center>PRODUCT NAME</center>
         </div>
@@ -133,34 +104,45 @@ function updateTable() {
             <center>AMOUNT (Rs.)</center>
         </div>
         <div class="col"></div>
-    </div>`
-    $('.Order_table').append(str);
-    for (var item in cat_cart) {
-        flag = false;
-        qty = cat_cart[item][0];
-        sum += qty;
-        name = cat_cart[item][1];
-        price = qty * cat_cart[item][2];
-        TotalPrice += price;
-        str = `<div class="row"><div class="col"><center>${name}</center></div><div class="col">
-            <center>${qty}</center></div><div class="col"><center>${price}</center></div><div class="col">
-            <center><span class="divdel"><button type="button" onclick = "dele(this)" class="btn btn-danger del" id=${item}>Delete</button></span></center></div></div><hr>`
-        $('.Order_table').append(str);
-    }
-    if (flag === true) {
-        str = `<div class="row"><div class="col-md-4"></div><div class="col-md-4">Uhhh!! Your cart is Empty....</div><div class="col-md-4"></div></div>`;
-        $('.Order_table').append(str);
-        $('.Foo').empty();
-    } else {
-        str = `<div class="heading2 style="font-size:10px;" "><div class="row"><div class="col mt-3"><center>Total Price</center></div><div class="col"></div><div class="col mt-3"><center>${TotalPrice}</center></div><div class="col mt-2  "><center><a href="/user/checkout/"><button type="button" class="btn btn-danger">CheckOut</button></a></center></div></div></div>`
-        $('.Foo').append(str);
-    }
-    if (sum == 0) {
-        document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>'
-    } else {
-        document.getElementById('cart').innerHTML = sum;
-    }
+    </div>
+    {% if item_list %}
+        {% for id,name,price,quantity in item_list%}
+            <div class="row">
+                <div class="col">
+                    <center>{{name}}</center>
+                </div>
+                <div class="col">
+                    <center>{{quantity}}</center>
+                </div>
+                <div class="col">
+                    <center>{{price}}</center>
+                </div>
+                <div class="col">
+                    <center><span class="divdel"><a href="/user/del/{{id}}"><button type="button" class="btn btn-danger del">Delete</button></a>
+                        </span></center>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <div class="row"><div class="col-md-4"></div><div class="col-md-4">Uhhh!! Your cart is Empty....</div><div class="col-md-4"></div></div>
+    {% endif %}
+</div>
+<span class="Foo"> 
+    <div class="heading2 style="font-size:10px;><div class="row"><div class="col mt-3"><center>Total Price</center></div><div class="col"></div><div class="col mt-3"><center>{{total_price}}</center></div><div class="col mt-2  "><center><a href="/user/checkout/"><button type="button" class="btn btn-success">CheckOut</button></a></center></div></div></div>
+</span>
+{% endblock %}
 
-}
+
+{% block js %}
+
+<script type="text/javascript">
+    console.log({{total_item}})
+    if("{{total_cart_item}}"==="None"){
+        document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>';
+    }
+    else{
+        document.getElementById('cart').innerHTML = {{total_cart_item}};
+    }
 </script>
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User,auth 
-from user.models import Cart 
+from manager.models import Manager
 
 # Create your views here.
 def login(request):
@@ -12,6 +12,8 @@ def login(request):
 		user = auth.authenticate(username=username,password=password)
 		if user is not None:
 			auth.login(request,user)
+			if Manager.objects.filter(Username=username).exists():
+				return redirect("/manager")
 			return redirect("/user")
 		else:
 			params = {'msg':"Invalid Credentials"}

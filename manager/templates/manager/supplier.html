@@ -1,0 +1,166 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block title %}Suppliers{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'manager/home.css' %}" />
+    
+    <style type="text/css">
+        .button{
+            margin: 10px 6px;
+        }
+        .bb{
+            margin-left: 0px;
+        }
+        .fa-envelope:hover {
+            color: rgb(48, 202, 48)!important;
+        }
+        .h {
+            margin: 10px;
+            padding-left: 20px;
+            padding-right: 273px;
+        }
+        
+        .heading {
+            top: 24%;
+            left: 30%;
+            color: white;
+            z-index: 3;
+            position: absolute;
+            width: 760px;
+            height: 45px;
+            background: #4360b5;
+        }
+        
+        .h {
+            margin: 10px;
+            padding-left: 20px;
+        }
+
+        .Order_table {
+            top: 60%;
+            left: 60%;
+            color: white;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            width: 800px;
+            height: 400px;
+            background: rgba(37, 45, 66, 0.7);
+            overflow: auto;
+            text-align: justify-all;
+        }
+
+        .Order_table #main_row {
+            color: #888;
+            margin: 20px;
+            margin-top: 27px;
+            margin-bottom: 27px;
+        }
+
+        .Order_table .row {
+            color: white;
+            margin: 20px;
+        }
+
+        .Order_table #main_row .col {
+            font-size: 15px;
+        }
+
+        .Order_table .row .col {
+            font-size: 16px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+    <br><br>
+    <div id="row">
+        <center>
+
+            <div class="heading">
+                <div class="h" style="margin-left: 270px;">List of all Suppliers</div>
+            </div>
+
+            <div class="Order_table">
+                <div class="row" id="main_row">
+                    
+                    <div class="col">
+                        <center>Firstname</center>
+                    </div>
+                    
+                    <div class="col">
+                        <center>Lastname</center>
+                    </div>
+                    
+                    <div class="col">
+                        <center>Email</center>
+                    </div>
+
+                </div>
+
+                    {% if  suppliers %}
+                        {% for supplier in suppliers %}
+                        
+                        <div class="row">
+                            
+                            <div class="col">
+                                <center>{{supplier.Firstname}}</center>
+                            </div>
+                            
+                            <div class="col">
+                                <center>{{supplier.Lastname}}</center>
+                            </div>
+                            
+                            <div class="col">
+                                <center>
+
+                                    <a href="mailto:{{supplier.Email}}" class="fa fa-envelope fa-2x" style="font-size: 25px;float: right;
+                                    text-align: center;padding-right: 100px;color:white" aria-hidden="true">
+                                    </a>
+                                    
+                                </center>
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+                   
+                    {% else %}
+                    
+                        <div class="row">
+                    
+                            <div class="col-md-4">
+            
+                            </div>
+                            
+                            <div class="col-md-4">
+                                No Suppliers
+                            </div>
+                            
+                            <div class="col-md-4">
+            
+                            </div>
+
+                        </div>
+        
+                    {% endif %}
+
+            </div>
+            
+        </center>
+            
+{% endblock %}
+
+{% block js %}
+
+<script>
+
+    $("button").remove(".active");
+    $("#tr").addClass("active");
+
+</script>
+
+{% endblock %}

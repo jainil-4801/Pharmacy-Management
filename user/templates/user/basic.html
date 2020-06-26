@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 {% load static %}
 
 <head>
@@ -14,11 +14,12 @@
     .search-box {
         background: #2f3640;
         height: 40px;
-        margin-left: -343px;
-        margin-right: 61px;
+        margin-left: 350px;
         border-radius: 40px;
     }
-
+    ul li a {
+        text-decoration: none;
+    }
     .search-btn {
         color: #4360b5;
         float: right;
@@ -28,6 +29,7 @@
         background: #2f3640;
         display: flex;
         justify-content: center;
+        text-decoration: none;
     }
 
     .search-txt {
@@ -56,13 +58,16 @@
     <div class="wrapper">
         <div class="top_navbar" style="z-index: 5">
             <div class="top_menu">
-                <!-- <img class="logo"src="+.png" alt=""> -->
-                <img class="logo" src="{% static 'user/+.png' %}" alt="">
-                <div class="Head">Pharmacy Management</div>
+
+                 <!-- Changed -->
+                <a class="navbar-brand" href="#" style="margin-top: 13px;margin-left: 30px;">
+                    <img src="/static/user/logo.png" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+                    <span class="brand my-2"> RIJAS Online PMS </span>
+                </a>
                 <center>
                     <div class="search-box">
-                        <form method="get" action="/user/search/">
-                            <input class="search-txt" type="text" name="search" id="search" placeholder="Type to search">
+                        <form  class="form-inline" method="get" action="/user/search/">
+                            <input class="form-contol search-txt" type="text" name="search" id="search" placeholder="Type to search">
                             <a href="#" class="search-btn">
                                 <i class="fas fa-search logo"></i>
                             </a>
@@ -70,7 +75,7 @@
                     </div>
                 </center>
                 <ul style="margin-bottom: 0">
-                    <li style="width: 100px">
+                    <li style="width: 150px">
                         {% if user.is_authenticated %}
                         <center>
                             <a href="#"><i class="fas fa-user"></i></a>
@@ -85,22 +90,22 @@
         </div>
         <div class="sidebar" style="z-index: 20">
             <ul>
-                <li><a href="/user/about" id="at">
+                <li><a href="/user/about" id="at" style="text-decoration: none;">
                         <span class="icon"><i class="fas fa-info-circle"></i></span>
                         <span class="title">About Us</span></a></li>
-                <li><a href="/user" id="dd">
+                <li><a href="/user" id="dd" style="text-decoration: none">
                         <span class="icon"><i class="material-icons" style="font-size:15px;">dashboard</i></span>
                         <span class="title">Dashboard</span>
                     </a></li>
-                <li><a href="/user/tracker" id="tr">
+                <li><a href="/user/tracker" id="tr" style="text-decoration: none">
                         <span class="icon"><i class="fa fa-truck"></i></span>
                         <span class="title">Tracker</span>
                     </a></li>
-                <li><a href="/user/order" id="or">
+                <li><a href="/user/order" id="or" style="text-decoration: none">
                         <span class="icon"><i class="fas fa-shopping-cart"></i></span>
                         <span class="title" id="ordu">Orders <span id="cart" style="margin-left: 8px;border-radius: 50%;padding: 1.5px 7px;background: #3b4cad;">0</span>
                     </a></li>
-                <li><a href="/user/logout" id="lt">
+                <li><a href="/user/logout" id="lt" style="text-decoration: none">
                         <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
                         <span class="title">Logout</span>
                     </a></li>

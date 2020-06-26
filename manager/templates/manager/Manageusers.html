@@ -1,0 +1,165 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block title %}Users List{% endblock %}
+
+{% block css %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'manager/home.css' %}" />
+    
+    <style type="text/css">
+
+        .button{
+            margin: 10px 6px;
+        }
+        .bb{
+            margin-left: 0px;
+        }
+        .fa-envelope:hover {
+            color: rgb(48, 202, 48)!important;
+        }
+        .h {
+            margin: 10px;
+            padding-left: 20px;
+            padding-right: 273px;
+        }
+        
+        .heading {
+            top: 25%;
+            left: 30%;
+            color: white;
+            z-index: 3;
+            position: absolute;
+            width: 760px;
+            height: 45px;
+            background: #4360b5;
+        }
+        
+        .h {
+            margin: 10px;
+            padding-left: 20px;
+        }
+
+        .Order_table {
+            top: 60%;
+            left: 60%;
+            color: white;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            width: 800px;
+            height: 400px;
+            background: rgba(37, 45, 66, 0.7);
+            overflow: auto;
+            text-align: justify-all;
+        }
+
+        .Order_table #main_row {
+            color: #888;
+            margin: 20px;
+            margin-top: 27px;
+            margin-bottom: 27px;
+        }
+
+        .Order_table .row {
+            color: white;
+            margin: 20px;
+        }
+
+        .Order_table #main_row .col {
+            font-size: 15px;
+        }
+
+        .Order_table .row .col {
+            font-size: 16px;
+        }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+    <div id="row">
+
+        <center>
+
+            <div class="heading">
+                <div class="h" style="margin-left: 250px;">All Users</div>
+            </div>
+
+            <div class="Order_table">
+                <div class="row" id="main_row">
+                    
+                    <div class="col">
+                        <center>Username</center>
+                    </div>
+                    
+                    <div class="col">
+                        <center>First Name</center>
+                    </div>
+                    
+                    <div class="col">
+                        <center>Last Name</center>
+                    </div>
+
+                </div>
+
+                {% if  users %}
+                    {% for user in users %}
+            
+                        {%if not user.is_superuser%}
+                        
+                        <div class="row">
+                            
+                            <div class="col">
+                                <center>{{user.username}}</center>
+                            </div>
+                            
+                            <div class="col">
+                                <center>{{user.first_name}}</center>
+                            </div>
+                            
+                            <div class="col">
+                                <center>{{user.last_name}}</center>
+                            </div>
+
+                        </div>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+            </div>
+            
+            {% else %}
+
+            <div class="row">
+                
+                <div class="col-md-4">
+
+                </div>
+                
+                <div class="col-md-4">
+                    No Users
+                </div>
+                
+                <div class="col-md-4">
+
+                </div>
+            </div>
+
+            {% endif %}
+
+        </center>
+{% endblock %}
+
+{% block js %}
+
+<script>
+
+    $("button").remove(".active");
+    $("#mu").addClass("active");
+
+</script>
+
+{% endblock %}

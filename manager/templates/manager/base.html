@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style type="text/css">
+    .search-box {
+        background: #2f3640;
+        height: 40px;
+        margin-left: -343px;
+        margin-right: 61px;
+        border-radius: 40px;
+    }
+
+    .search-btn {
+        color: #4360b5;
+        float: right;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #2f3640;
+        display: flex;
+        justify-content: center;
+    }
+
+    .search-txt {
+        border: none;
+        background: none;
+        outline: none;
+        float: left;
+        padding-left: 20px;
+        color: white;
+        font-size: 16px;
+        transition: 0.4s;
+        line-height: 40px;
+        width: 240px;
+    }
+
+    .logo {
+        margin-top: 10px;
+        text-decoration: none;
+    }
+    </style>
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="top_navbar" style="z-index: 5">
+            <div class="top_menu">
+                <!-- Changed -->
+                <a class="navbar-brand" href="#" style="margin-top: 13px;margin-left: 30px;">
+                    <img src="/static/user/logo.png" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+                    <span class="brand my-2"> RIJAS Online PMS </span>
+                </a>
+                <ul style="margin-bottom: 0">
+                    <li style="width: 200px">
+                        {% if user.is_authenticated %}
+                        <center>
+                            <a href="#"><i class="fas fa-user"></i></a>
+                            <span style="color: #888;font-size: 15px;font-weight: 700">Hello, {{user.first_name}}</span>
+                        </center>
+                        {% else %}
+                        <a href="#"><i class="fas fa-user"></i></a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="sidebar" style="z-index: 20">
+            <ul>
+                <li><a href="/manager/about" id="at" style="text-decoration: none;">
+                        <span class="icon"><i class="fas fa-info-circle"></i></span>
+                        <span class="title">About Us</span></a></li>
+                <li><a href="/manager" id="dd" style="text-decoration: none;">
+                        <span class="icon"><i class="fas fa-list"></i></span>
+                        <span class="title">Managers</span>
+                    </a></li>
+                <li><a href="/manager/suppliers" id="tr" style="text-decoration: none;">
+                        <span class="icon"><i class="fa fa-truck"></i></span>
+                        <span class="title">Suppliers</span>
+                    </a></li>
+                <li><a href="/manager/addproducts" id="ap" style="text-decoration: none;">
+                        <span class="icon"><i class="fa fa-plus"></i></span>
+                        <span class="title">Add Products</span>
+                    </a></li>
+                <li><a href="/manager/manageusers" id="mu" style="text-decoration: none;">
+                        <span class="icon"><i class="fa fa-pencil"></i></span>
+                        <span class="title">Manage Users</span>
+                    </a></li>
+                <li><a href="/login" id="lt" style="text-decoration: none;">
+                        <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                        <span class="title">Logout</span>
+                    </a></li>
+            </ul>
+        </div>
+    </div>
+    {% block body %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    {% block js %}{% endblock %}
+</body>
+
+</html>
