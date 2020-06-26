@@ -1,0 +1,17 @@
+{% extends 'user/basic.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+<div class="container">
+	
+	<form enctype="multipart/form-data" method="post">
+		{% csrf_token %}
+		{{ product_form.as_p }}
+		<input type="submit" name="" value="Submit">
+	</form>
+
+</div>
+
+{% endblock %}

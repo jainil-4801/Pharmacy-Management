@@ -137,7 +137,8 @@ hr {
 {% block js %}
 
 <script type="text/javascript">
-    console.log({{total_item}})
+    $("#or").addClass("active");
+    // console.log({{total_item}})
     if("{{total_cart_item}}"==="None"){
         document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>';
     }

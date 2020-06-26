@@ -13,13 +13,13 @@ MERCHANT_KEY = 'kbzk1DSbJiV_O3p5';
 # Create your views here.
 @login_required 
 def index(request): 
-    total_item = Cart_Data.objects.all().aggregate(Sum('quantity'))['quantity__sum']
+    total_item = Cart_Data.objects.filter(user=request.user).aggregate(Sum('quantity'))['quantity__sum']
     params = {'total_item':total_item}
     return render(request,"user/index.html",params)
 
 @login_required
 def about(request):
-    total_item = Cart_Data.objects.all().aggregate(Sum('quantity'))['quantity__sum']
+    total_item = Cart_Data.objects.filter(user=request.user).aggregate(Sum('quantity'))['quantity__sum']
     params = {'total_item':total_item}
     return render(request,"user/about.html",params)
 
@@ -32,7 +32,7 @@ def logout(request):
 @login_required
 def order(request):
     total_price = 0
-    total_cart_item = Cart_Data.objects.all().aggregate(Sum('quantity'))['quantity__sum'] 
+    total_cart_item = Cart_Data.objects.filter(user=request.user).aggregate(Sum('quantity'))['quantity__sum'] 
     all_items = Cart_Data.objects.filter(user=request.user)
     item_list = []
     for i in all_items:
@@ -47,13 +47,14 @@ def order(request):
 
 @login_required
 def productview(request,myid):
+    total_item = Cart_Data.objects.filter(user=request.user).aggregate(Sum('quantity'))['quantity__sum']
     product = ProductList.objects.filter(product_id=myid)
     features = product[0].features.split('.')
-    return render(request,"user/prodview.html",{'product':product[0],'features':features[:len(features)-1]})
+    return render(request,"user/prodview.html",{'product':product[0],'features':features[:len(features)-1],'total_item':total_item})
 
 @login_required
 def discProducts(request,cat,discount):
-    total_item = Cart_Data.objects.all().aggregate(Sum('quantity'))['quantity__sum']
+    total_item = Cart_Data.objects.filter(user=request.user).aggregate(Sum('quantity'))['quantity__sum']
     product = ProductList.objects.filter(category=cat) 
     n = len(product)
     qnt = []
@@ -67,8 +68,8 @@ def discProducts(request,cat,discount):
                 qnt.append(obj.quantity)
             except Cart_Data.DoesNotExist:
                 qnt.append(0)
-            price.append((i.price,i.price-((i.price*i.discount)//100),((i.price*i.discount)//100)))
-    comb_list = zip(prod_list,qnt)
+            price.append((i.price,i.price-((i.price*i.discount)//100),((i.price*i.discount)//100),i.discount))
+    comb_list = zip(prod_list,qnt,price)
     params = {'comb_list':comb_list,'length':n,'total_item':total_item}
     return render(request,"user/catproducts.html",params)
 
@@ -113,7 +114,7 @@ def delete_item_cart(request,pid):
 
 @login_required
 def catproducts(request,cat):
-    total_item = Cart_Data.objects.all().aggregate(Sum('quantity'))['quantity__sum']
+    total_item = Cart_Data.objects.filter(user=request.user).aggregate(Sum('quantity'))['quantity__sum']
     product = ProductList.objects.filter(category=cat) 
     n = len(product)
     qnt = [] 
@@ -135,7 +136,7 @@ def catproducts(request,cat):
 def checkout(request):
     thank = "false" 
     id = None
-    total_item = Cart_Data.objects.all().aggregate(Sum('quantity'))['quantity__sum']
+    total_item = Cart_Data.objects.filter(user=request.user).aggregate(Sum('quantity'))['quantity__sum']
     if request.method =="POST":
         items_json = request.POST.get('itemsJson','')
         name= request.POST.get('name','')
@@ -188,7 +189,7 @@ def checkout(request):
 
 @login_required
 def tracker(request):
-    total_item = Cart_Data.objects.all().aggregate(Sum('quantity'))['quantity__sum']
+    total_item = Cart_Data.objects.filter(user=request.user).aggregate(Sum('quantity'))['quantity__sum']
     if request.method=="POST":
         OrderId=request.POST.get('OrderId','')
         email=request.POST.get('email','')
@@ -221,12 +222,11 @@ def search(request):
     t = request.GET.get('search') 
     if t is not None:
         query = t
-    print(query)
     allProds = []
     catProds = ProductList.objects.values('category','product_id')
     cats = {item['category'] for item in catProds}
     allProdid = []
-    total_item = Cart_Data.objects.all().aggregate(Sum('quantity'))['quantity__sum']
+    total_item = Cart_Data.objects.filter(user=request.user).aggregate(Sum('quantity'))['quantity__sum']
     for cat in cats:
         prodtemp = ProductList.objects.filter(category=cat)
         prod = []

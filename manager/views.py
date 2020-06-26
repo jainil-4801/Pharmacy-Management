@@ -5,6 +5,9 @@ from .models import Manager,Supplier
 from django.contrib.auth.models import User 
 from user.models import ProductList
 import warnings
+from manager.forms import ProductForm
+
+
 
 def index(request):
 	managers = Manager.objects.all()
@@ -25,36 +28,65 @@ def suppliers(request):
 	}
 	return HttpResponse(template.render(supplierdict,request))
 
+
+def addprods(request):
+	if request.method == "POST":
+		product_form = ProductForm(data = request.POST)
+
+		if product_form.is_valid():
+			product = product_form.save(commit=False)
+
+			if 'image' in request.FILES:
+				product.image = request.FILES['image']
+
+			product.save()
+		else:
+			print(product_form.errors)
+	else:
+		product_form = ProductForm()
+
+	return render(request,"manager/addprods.html",{'product_form':product_form})
+
+
+
+
 def addproducts(request):
 	if request.method == 'POST':
-		product=ProductList()
-		product.category= request.POST.get('pcategory')
-		if product.category=="Homeopathic" or product.category=="Allopathic" or product.category=="Ayurvedic":
-			pass
-		else:
-			# TO DO = CHECK HOMEOPATHIC IF WROMG SHOW IT
-			return redirect("/manager/addproducts") 
-		product.product_name= request.POST.get('pname')
-		product.exp_date= request.POST.get('pexpdate')
-		product.desc1= request.POST.get('pdesc1')
-		product.desc2= request.POST.get('pdesc2')
-		product.price= request.POST.get('pprice')
-		product.image= 'user/images/'+request.POST.get('pimg')
-		product.discount= request.POST.get('pdiscount')
-		product.features= request.POST.get('pfeatures')
-		product.use= request.POST.get('puse')
-		product.Quantity= request.POST.get('pquantity')
+		product = ProductList()
+		product.product_name = request.POST.get('pname')
+		product.category = request.POST.get('category')
+		product.exp_date = request.POST.get('pexpdate')
+		product.desc1 = request.POST.get('pdesc1')
+		product.desc2 = request.POST.get('pdesc2')
+		product.price = request.POST.get('pprice')
+		# May Work Don't Know.....
+		product.image = request.FILES['pimage']
+		product.discount = request.POST.get('pdiscount')
+		product.features = request.POST.get('pfeatures')
+		product.use = request.POST.get('puse')
+		product.Quantity = request.POST.get('pquantity')
 		product.save()
-		print(product.image)
-		return redirect("/manager/addproducts") 
-	else:
 
-		li = [2,3,4,5,6,7,8,9,10,11,12,13]
-		context = {
-			'li':li,
-		}
-		template = loader.get_template("manager/addproducts.html")
-		return HttpResponse(template.render(context,request)) 
+		print(product.product_name)
+		print(product.category)
+		print(product.exp_date)
+		print(product.desc1)
+		print(product.desc2)
+		print(product.price)
+		print(product.image)
+		print(product.discount)
+		print(product.features)
+		print(product.use)
+		print(product.Quantity)				
+	return render(request,"manager/addproducts.html") 
+	# else:
+
+	# 	li = [2,3,4,5,6,7,8,9,10,11,12,13]
+	# 	context = {
+	# 		'li':li,
+	# 	}
+	# 	template = loader.get_template("manager/addproducts.html")
+	# 	return HttpResponse(template.render(context,request)) 
 
 def manageusers(request):
 	users = User.objects.all()

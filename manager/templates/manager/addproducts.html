@@ -78,18 +78,13 @@
 {% block body %}
 
 <div class="content">
-
-    <div id="row">
         <center>
-
             <div class="heading" >
                 <div class="h" style="margin-left: 200px;">Add Products</div>
             </div>
-
-            <form action="" method="POST">
+            <form action="/manager/addproducts/" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="Order_table">
-                    
                         <div class="row" id="main_row">
                             <div class="col">
                                 <center>Property</center>
@@ -99,26 +94,18 @@
                                 <center>Details</center>
                             </div>
                         </div>
-                    
-                    {% for i in li %}
-                    {% if i is 2 %}
-                    <div class="row">                                
+                        <div class="row">                                
                         <div class="col">
                             <center>
                                 Product name
                             </center>
                         </div>
-                        
                         <div class="col">
-                            <center>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Product Name" name="panme" aria-describedby="basic-addon2">
-                                    <!-- <input type="text" name="pname" style="width: 280px;" placeholder="Product Name"> -->
-                                </div>
-                            </center>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Product Name" name="pname" aria-describedby="basic-addon2">
+                            </div>
                         </div>
-                    </div>
-                    {% elif i is 3 %}  
+                        </div>
                         <div class="row">                            
                             <div class="col">
                                 <center>
@@ -128,11 +115,13 @@
                             
                             <div class="col">
                                 <div class="input-group mb-3">
-                                    <select class="custom-select" id="inputGroupSelect02">
+                                    <select class="custom-select" name="category" id="inputGroupSelect02">
                                         <option selected>Choose...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <option value="Homeopathic">Homeopathic</option>
+                                        <option value="Ayurvedic">Ayurvedic</option>
+                                        <option value="Allopathic">Allopathic</option>
+                                        <option value="wellness">Wellness Product</option>
+                                        <option value="Health Juices">Health Juices</option>
                                     </select>
                                     <div class="input-group-append">
                                         <label class="input-group-text" for="inputGroupSelect02">Options</label>
@@ -140,7 +129,6 @@
                                 </div>
                             </div>
                         </div>
-                    {% elif i is 4 %}
                         <div class="row">                            
                             <div class="col">
                                 <center>
@@ -151,11 +139,9 @@
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Little Description" name="pdesc1" aria-describedby="basic-addon2">
-                                    <!-- <input type="text" name="pname" style="width: 280px;" placeholder="Product Name"> -->
                                 </div>
                             </div>
                         </div>
-                    {% elif i is 5 %}
                         <div class="row">                            
                             <div class="col">
                                 <center>
@@ -169,7 +155,6 @@
                                 </div>
                             </div>
                         </div>
-                    {% elif i is 6 %}
                         <div class="row">                            
                             <div class="col">
                                 <center>
@@ -183,7 +168,6 @@
                                 </div>
                             </div>
                         </div>
-                    {% elif i is 7 %}
                         <div class="row">                            
                             <div class="col">
                                 <center>
@@ -194,35 +178,23 @@
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <input type="number" class="form-control" placeholder="Price(in Rs)" name="pprice">
-                                    <!-- <input type="text" name="pname" style="width: 280px;" placeholder="Product Name"> -->
                                 </div>
                             </div>
                         </div> 
-                    {% elif i is 8 %}
                         <div class="row">                            
                             <div class="col">
                                 <center>
                                     Image
                                 </center>
                             </div>
-                            
                             <div class="col">
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile04" name="pimg" aria-describedby="inputGroupFileAddon04" accept="image/*" placeholder="Image">
-                                        <label class="custom-file-label" for="inputGroupFile04"><span style="margin-right: 225px;">Choose Image</span></label>
+                                <div class="input-group mb-3">
+                                    <div class="form-group">
+                                        <input type="file" class="form-control-file" name="pimage" id="exampleFormControlFile1" accept="image/*">
                                       </div>
                                 </div>
-                                <!-- <center>
-                                    <form action="/action_page.php">
-                                        <div style="margin-left: 60px;">
-                                            <input type="file" name="pimg" accept="image/*" placeholder="Image">
-                                        </div>
-                                    </form>
-                                </center> -->
                             </div>
                         </div> 
-                    {% elif i is 9 %}
                         <div class="row">                            
                             <div class="col">
                                 <center>
@@ -234,12 +206,8 @@
                                  <div class="input-group mb-3">
                                     <input type="number" class="form-control" placeholder="Discount" name="pdiscount" aria-describedby="basic-addon2">
                                 </div>   
-                               <!--  <center>
-                                    <input type="number" style="width: 280px;" name="pdiscount" placeholder="Discount">
-                                </center> -->
                             </div>
                         </div> 
-                    {% elif i is 10 %}
                         <div class="row">                            
                             <div class="col">
                                 <center>
@@ -251,12 +219,8 @@
                                 <div class="input-group">
                                     <textarea class="form-control" placeholder="Features" name="pfeatures" aria-label="With textarea"></textarea>
                                 </div>
-                                <!-- <center>
-                                    <input type="text" style="width: 280px;" name="pfeatures" placeholder="features">
-                                </center> -->
                             </div>
                         </div> 
-                    {% elif i is 11 %}
                         <div class="row">                            
                             <div class="col">
                                 <center>
@@ -268,12 +232,8 @@
                                 <div class="input-group">
                                     <textarea class="form-control" placeholder="Use" name="puse" aria-label="With textarea"></textarea>
                                 </div>
-                                <!-- <center>
-                                    <input type="text" style="width: 280px;" name="puse" placeholder="Use">
-                                </center> -->
                             </div>
                         </div>
-                    {% elif i is 12 %}
                         <div class="row">                            
                             <div class="col">
                                 <center>
@@ -285,17 +245,11 @@
                                 <div class="input-group mb-3">
                                     <input type="number" class="form-control" placeholder="Quantity" name="pquantity" aria-describedby="basic-addon2">
                                 </div> 
-                                <!-- <center>
-                                    <input type="number" style="width: 280px;" name="pquantity" placeholder="Quantity">
-                                </center> -->
                             </div>
                         </div>
-                    {% else %}
                         <br>
                         <input type="submit" style="width: 50%;" class="btn btn-success" value="Add Product"/>
                         <br><br>
-                    {% endif %}
-                    {% endfor %}
                 </div>
 
             </form>

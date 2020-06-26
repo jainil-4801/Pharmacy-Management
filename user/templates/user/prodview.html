@@ -88,22 +88,12 @@
 {% endblock %}
 {% block js %}
 <script type="text/javascript">
-//Displaying total items in cart 
-if (localStorage.getItem('cat_cart') == {}) {
-    var cat_cart = {};
-} else {
-    cat_cart = JSON.parse(localStorage.getItem('cat_cart'));
-} 
-var sum = 0;
-for (var item in cat_cart) {
-    let qty = cat_cart[item][0];
-    sum += qty;
-}
-if(sum==0){
-    document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>'   
-}
-else{
-    document.getElementById('cart').innerHTML = sum;
-}
+//Displaying total items in cart
+    if("{{total_item}}"==="None"){
+        document.getElementById('ordu').innerHTML = 'Orders <span id="cart"></span>';
+    }
+    else{
+        document.getElementById('cart').innerHTML = {{total_item}};
+    }
 </script>
 {% endblock %}
