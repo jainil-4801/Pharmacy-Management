@@ -1,6 +1,8 @@
 # Pharmacy Management System
 
-Note: All commands need to be typed in Command Prompt
+# Introduction
+
+This web application can be used in any pharmaceutical shops having a database to maintain. Here the Admin(Managers) who are handling the organisation to manage the record of customers and Suppliers. Each customer can make the order and can also use the functionality of tracking the order.
 
 ![Badge](https://img.shields.io/badge/Pharmacy%20Management%20-BrightGreen)
 ![Badge](https://img.shields.io/badge/Health%20-informational)
